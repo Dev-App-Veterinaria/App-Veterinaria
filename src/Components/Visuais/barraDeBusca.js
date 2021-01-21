@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { StyleSheet, TextInput, TouchableOpacity, View, ToastAndroid } from "react-native";
 import Icon from 'react-native-vector-icons/Ionicons';
-import normalizador from '../Controllers/normalizador';
+import normalizador from '../../Controllers/normalizador';
 
 const styles = StyleSheet.create({
     container: {

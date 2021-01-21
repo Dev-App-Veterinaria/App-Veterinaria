@@ -3,10 +3,10 @@ import { View, TouchableOpacity } from 'react-native';
 import MapView, {Polygon} from 'react-native-maps';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import BarraDeBusca from '../../Components/barraDeBusca';
+import BarraDeBusca from '../../Components/Visuais/barraDeBusca';
 import styles from './styles';
-import poligonos from '../../Controllers/poligonos';
-import pontosCentrais from '../../Controllers/pontosCentrais';
+import poligonos from '../../Components/Dados/poligonos';
+import pontosCentrais from '../../Components/Dados/pontosCentrais';
 import dados from '../../Controllers/dados';
 import mapStyle from './mapStyle.json';
 
