@@ -8,6 +8,7 @@ import styles from './styles';
 import poligonos from '../../Controllers/poligonos';
 import pontosCentrais from '../../Controllers/pontosCentrais';
 import dados from '../../Controllers/dados';
+import mapStyle from './mapStyle.json';
 
 //Componente inicial do App
 export default function (){
@@ -28,7 +29,9 @@ export default function (){
             <View style={styles.containerMapa}>
                 <MapView
                     initialRegion={pontosCentrais.BRASIL}
-                    style={styles.mapa}>
+                    style={styles.mapa}
+                    customMapStyle={mapStyle}
+                    minZoomLevel={4.4}>
                     <Poligono
                         coordinates={poligonos.ACRE}
                         nome="Acre"

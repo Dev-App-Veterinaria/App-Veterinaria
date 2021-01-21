@@ -11,7 +11,7 @@ export default StyleSheet.create({
         justifyContent: 'center',
         padding: '3%',
         marginTop: '4%',
-        borderRadius: 20,
+        borderRadius: 10,
         width: normalizador.widthPercentageToDP('40%'),
         height: normalizador.widthPercentageToDP('35%')
     },

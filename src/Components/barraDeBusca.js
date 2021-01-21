@@ -6,18 +6,19 @@ import normalizador from '../Controllers/normalizador';
 const styles = StyleSheet.create({
     container: {
         position: 'absolute',
+        alignItems: "center",
         height: normalizador.heightPercentageToDP("6%"),
         width: normalizador.widthPercentageToDP("100%"),
-        flexDirection: "row",
+        flexDirection: "row-reverse",
         paddingTop: 0,
         paddingHorizontal: 2,
-        padding: 6,
         marginBottom: 3,
         backgroundColor: "#4f40b5"
     },
     textInput: {
         flex: 1,
-        flexGrow: 8,
+        height: "80%",
+        flexGrow: 1,
         paddingHorizontal: 6,
         marginStart: 2,
         marginBottom: 0,
@@ -26,6 +27,9 @@ const styles = StyleSheet.create({
     icone: {
         marginHorizontal: 10,
         marginTop: 4
+    },
+    button: {
+        position: "absolute",
     }
 });
 
@@ -68,8 +72,8 @@ export default function(){
                     validarEntrada()}>
                 <Icon
                     name="search"
-                    color="white"
-                    size={normalizador.widthPercentageToDP("7%")}
+                    color="#4f40b5"
+                    size={normalizador.widthPercentageToDP("4%")}
                     style={styles.icone}/>
             </TouchableOpacity>
         </View>
