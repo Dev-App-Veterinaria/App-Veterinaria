@@ -1,6 +1,7 @@
-import React from 'react';
+
+import React, { createRef } from 'react';
 import { View, TouchableOpacity, Dimensions } from 'react-native';
-import MapView, {Polygon} from 'react-native-maps';
+import MapView, { Polygon } from 'react-native-maps';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import BarraDeBusca from '../../Components/Visuais/barraDeBusca';
@@ -12,6 +13,24 @@ import mapStyle from './mapStyle.json';
 //Componente inicial do App
 export default function (){
     const navigation = useNavigation()
+    const mapView = createRef()
+
+    //Função usada para limitar a área de scroll do usuário, é chamada depois que o mapa é carregado
+    const setMapBoundaries = () => {
+        mapView.current.setMapBoundaries({latitude: 5.245219, longitude: -32.212305}, {latitude: -31.708548, longitude: -73.958163})
+    }
+
+    //Função usada para determinar o nível de zoom do mapa com base na largura da tela
+    function getMinZoomLevel() {
+        const screenWidth = Dimensions.get('screen').width
+        if(screenWidth <= 360){
+            return 3.6
+        }else if (screenWidth <= 412){
+            return 3.8
+        }else{
+            return 4.4
+        }
+    }
 
     //Função para renderizar os polígonos no mapa
     function Poligono(props){
@@ -30,7 +49,9 @@ export default function (){
                     initialRegion={pontosCentrais.BRASIL}
                     style={styles.mapa}
                     customMapStyle={mapStyle}
-                    minZoomLevel={4.4}>
+                    minZoomLevel={getMinZoomLevel()}
+                    ref={mapView}
+                    onMapReady={setMapBoundaries}>
                     <Poligono
                         coordinates={poligonos.ACRE}
                         nome="Acre"
