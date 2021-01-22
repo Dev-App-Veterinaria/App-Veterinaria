@@ -23,7 +23,13 @@ export default function (){
     //Função usada para determinar o nível de zoom do mapa com base na largura da tela
     function getMinZoomLevel() {
         const screenWidth = Dimensions.get('screen').width
-        return screenWidth <= 360 ? 3.6 : 4.4
+        if(screenWidth <= 360){
+            return 3.6
+        }else if (screenWidth <= 412){
+            return 3.8
+        }else{
+            return 4.4
+        }
     }
 
     //Função para renderizar os polígonos no mapa
