@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity, Dimensions } from 'react-native';
 import MapView, {Polygon} from 'react-native-maps';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -7,7 +7,6 @@ import BarraDeBusca from '../../Components/Visuais/barraDeBusca';
 import styles from './styles';
 import poligonos from '../../Components/Dados/poligonos';
 import pontosCentrais from '../../Components/Dados/pontosCentrais';
-import dados from '../../Controllers/dados';
 import mapStyle from './mapStyle.json';
 
 //Componente inicial do App
@@ -21,7 +20,7 @@ export default function (){
                 strokeColor="white"
                 fillColor="#4f40b5"
                 coordinates={props.coordinates}
-                onPress={() => {navigation.navigate("Doenças", {titulo: props.nome, doencas: dados})}}/>
+                onPress={() => {navigation.navigate("Doenças", {titulo: props.nome, estado: props.nome})}}/>
     }
 
     return(
