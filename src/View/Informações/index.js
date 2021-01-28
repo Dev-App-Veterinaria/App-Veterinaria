@@ -6,12 +6,19 @@ import styles from "./styles";
 //Tela contendo as informações de uma doença
 export default function (props) {
   const info = props.route.params;
-  console.log(info);
+
+  const I = (props) => <Text style={{fontStyle: 'italic'}}>{props.children}</Text>
 
   return (
     <ScrollView style={{flex: 1}}contentContainerStyle={styles.container}>
         <View style={styles.itemContainer}>
-            <Text style={styles.txtTitulo}>{info.name}</Text>
+            <Text style={styles.txtTitulo}>Doença</Text>
+            <Text style={styles.txt}>{info.name} (<I>{info.scientificName}</I>)</Text>
+            
+        </View>
+
+        <View style={styles.itemContainer}>
+            <Text style={styles.txtTitulo}>Agente Epidemiológico</Text>
             <Text style={styles.txt}>{info.etiologicalAgent}</Text>
         </View>
 

@@ -14,7 +14,6 @@ export default function(props){
 
     useEffect(()=>{
         const estado = props.route.params.estado;
-        console.log(`Estado: ${estado}`)
         buscarDoencasPorEstado(estado)
             .then(itens => {
                 console.log(itens)
@@ -37,7 +36,7 @@ export default function(props){
                 onPress={() => {navigation.navigate("Informações", props)}}>
 
                 <Text style={styles.txtTitulo}>{props.name}</Text>
-                <Text style={styles.txtDescricao}>{props.etiologicalAgent}</Text>
+                <Text style={styles.txtDescricao}>{props.scientificName}</Text>
             </TouchableOpacity>
         )
     }
