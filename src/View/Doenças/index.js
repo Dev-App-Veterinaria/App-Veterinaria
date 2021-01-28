@@ -35,8 +35,8 @@ export default function(props){
                 style={styles.containerRenderItem}
                 onPress={() => {navigation.navigate("Informações", props)}}>
 
-                <Text style={styles.txtTitulo}>{props.name}</Text>
-                <Text style={styles.txtDescricao}>{props.scientificName}</Text>
+                <Text style={styles.txtTitulo}>{props.scientificName}</Text>
+                <Text style={styles.txtDescricao}>{props.etiologicalAgent}</Text>
             </TouchableOpacity>
         )
     }
@@ -46,7 +46,7 @@ export default function(props){
             <FlatList
                 columnWrapperStyle={styles.flatList}
                 data={doencas}
-                keyExtractor={item => item.titulo}
+                keyExtractor={item => item._id}
                 renderItem={({item}) => renderItem(item)}
                 numColumns={2}/>
         </View>
