@@ -1,4 +1,4 @@
-
+import { StatusBar } from "expo-status-bar";
 import React, { createRef } from 'react';
 import { View, TouchableOpacity, Dimensions } from 'react-native';
 import MapView, { Polygon } from 'react-native-maps';
@@ -44,6 +44,7 @@ export default function (){
 
     return(
         <View style={styles.container}>
+            <StatusBar style="light" />
             <View style={styles.containerMapa}>
                 <MapView
                     initialRegion={pontosCentrais.BRASIL}
