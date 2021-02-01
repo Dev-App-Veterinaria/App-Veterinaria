@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, FlatList } from "react-native";
+import { View, Text } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import styles from "./styles";
 
@@ -10,18 +10,16 @@ export default function (props) {
   const I = (props) => <Text style={{fontStyle: 'italic'}}>{props.children}</Text>
 
   return (
-    <ScrollView style={{flex: 1}}contentContainerStyle={styles.container}>
+    <ScrollView style={{flex: 1}}
+                contentContainerStyle={styles.container}>
         <View style={styles.itemContainer}>
             <Text style={styles.txtTitulo}>Doença</Text>
             <Text style={styles.txt}>{info.name} (<I>{info.scientificName}</I>)</Text>
-            
         </View>
-
         <View style={styles.itemContainer}>
             <Text style={styles.txtTitulo}>Agente Epidemiológico</Text>
             <Text style={styles.txt}>{info.etiologicalAgent}</Text>
         </View>
-
         <View style={styles.itemContainer}>
             <Text style={styles.txtTitulo}>Vetor</Text>
             <Text style={styles.txt}>{info.vector}</Text>
@@ -35,7 +33,7 @@ export default function (props) {
             <Text style={styles.txt}>{info.transmission}</Text>
         </View>
         <View style={styles.itemContainer}>
-            <Text style={styles.txtTitulo}>Vetor</Text>
+            <Text style={styles.txtTitulo}>Manifestação Clínica</Text>
             <Text style={styles.txt}>{info.clinicalManifestation}</Text>
         </View>
         <View style={styles.itemContainer}>

@@ -7,7 +7,6 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import BarraDeBusca from '../../Components/Visuais/barraDeBusca';
 import styles from './styles';
 import poligonos from '../../Components/Dados/poligonos';
-import pontosCentrais from '../../Components/Dados/pontosCentrais';
 import mapStyle from './mapStyle.json';
 
 //Componente inicial do App
@@ -39,7 +38,7 @@ export default function (){
                 strokeColor="white"
                 fillColor="#4f40b5"
                 coordinates={props.coordinates}
-                onPress={() => {navigation.navigate("Doenças", {titulo: props.nome, estado: props.nome})}}/>
+                onPress={() => {navigation.navigate("Doenças", props.nome)}}/>
     }
 
     return(
@@ -47,7 +46,7 @@ export default function (){
             <StatusBar style="light" />
             <View style={styles.containerMapa}>
                 <MapView
-                    initialRegion={pontosCentrais.BRASIL}
+                    initialRegion={{longitude: -54.312460, latitude: -9.50000, latitudeDelta: 40, longitudeDelta: 40}}
                     style={styles.mapa}
                     customMapStyle={mapStyle}
                     minZoomLevel={getMinZoomLevel()}
@@ -55,112 +54,85 @@ export default function (){
                     onMapReady={setMapBoundaries}>
                     <Poligono
                         coordinates={poligonos.ACRE}
-                        nome="Acre"
-                        centro={pontosCentrais.ACRE}/>
+                        nome="Acre"/>
                     <Poligono
                         coordinates={poligonos.ALAGOAS}
-                        nome="Alagoas"
-                        centro={pontosCentrais.ALAGOAS}/>
+                        nome="Alagoas"/>
                     <Poligono
                         coordinates={poligonos.AMAPA}
-                        nome="Amapá"
-                        centro={pontosCentrais.AMAPA}/>
+                        nome="Amapá"/>
                     <Poligono
                         coordinates={poligonos.AMAZONAS}
-                        nome="Amazonas"
-                        centro={pontosCentrais.AMAZONAS}/>
+                        nome="Amazonas"/>
                     <Poligono
                         coordinates={poligonos.BAHIA}
-                        nome="Bahia"
-                        centro={pontosCentrais.BAHIA}/>
+                        nome="Bahia"/>
                     <Poligono
                         coordinates={poligonos.CEARA}
-                        nome="Ceará"
-                        centro={pontosCentrais.CEARA}/>
+                        nome="Ceará"/>
                     <Poligono
                         coordinates={poligonos.DISTRITOFEDERAL}
-                        nome="Distrito Federal"
-                        centro={pontosCentrais.DISTRITOFEDERAL}/>
+                        nome="Distrito Federal"/>
                     <Poligono
                         coordinates={poligonos.ESPIRITOSANTO}
-                        nome="Espírito Santo"
-                        centro={pontosCentrais.ESPIRITOSANTO}/>
+                        nome="Espírito Santo"/>
                     <Poligono
                         coordinates={poligonos.GOIAS}
-                        nome="Goiás"
-                        centro={pontosCentrais.GOIAS}/>
+                        nome="Goiás"/>
                     <Poligono
                         coordinates={poligonos.MARANHAO}
-                        nome="Maranhão"
-                        centro={pontosCentrais.MARANHAO}/>
+                        nome="Maranhão"/>
                     <Poligono
                         coordinates={poligonos.MATOGROSSO}
-                        nome="Mato Grosso"
-                        centro={pontosCentrais.MATOGROSSO}/>
+                        nome="Mato Grosso"/>
                     <Poligono
                         coordinates={poligonos.MATOGROSSODOSUL}
-                        nome="Mato Grosso do Sul"
-                        centro={pontosCentrais.MATOGROSSODOSUL}/>
+                        nome="Mato Grosso do Sul"/>
                     <Poligono
                         coordinates={poligonos.MINASGERAIS}
-                        nome="Minas Gerais"
-                        centro={pontosCentrais.MINASGERAIS}/>
+                        nome="Minas Gerais"/>
                     <Poligono
                         coordinates={poligonos.PARA}
-                        nome="Pará"
-                        centro={pontosCentrais.PARA}/>
+                        nome="Pará"/>
                     <Poligono
                         coordinates={poligonos.PARAIBA}
-                        nome="Paraíba"
-                        centro={pontosCentrais.PARAIBA}/>
+                        nome="Paraíba"/>
                     <Poligono
                         coordinates={poligonos.PARANA}
-                        nome="Paraná"
-                        centro={pontosCentrais.PARANA}/>
+                        nome="Paraná"/>
                     <Poligono
                         coordinates={poligonos.PERNAMBUCO}
-                        nome="Pernambuco"
-                        centro={pontosCentrais.PERNAMBUCO}/>
+                        nome="Pernambuco"/>
                     <Poligono
                         coordinates={poligonos.PIAUI}
-                        nome="Piauí"
-                        centro={pontosCentrais.PIAUI}/>
+                        nome="Piauí"/>
                     <Poligono
                         coordinates={poligonos.RIODEJANEIRO}
-                        nome="Rio de Janeiro"
-                        centro={pontosCentrais.RIODEJANEIRO}/>
+                        nome="Rio de Janeiro"/>
                     <Poligono
                         coordinates={poligonos.RIOGRANDEDONORTE}
-                        nome="Rio Grande do Norte"
-                        centro={pontosCentrais.RIOGRANDEDONORTE}/>
+                        nome="Rio Grande do Norte"/>
                     <Poligono
                         coordinates={poligonos.RIOGRANDEDOSUL}
-                        nome="Rio Grande do Sul"
-                        centro={pontosCentrais.RIOGRANDEDOSUL}/>
+                        nome="Rio Grande do Sul"/>
                     <Poligono
                         coordinates={poligonos.RONDONIA}
-                        nome="Rondônia"
-                        centro={pontosCentrais.RONDONIA}/>
+                        nome="Rondônia"/>
                     <Poligono
                         coordinates={poligonos.RORAIMA}
-                        nome="Roraima"
-                        centro={pontosCentrais.RORAIMA}/>
+                        nome="Roraima"/>
                     <Poligono
                         coordinates={poligonos.SANTACATARINA}
-                        nome="Santa Catarina"
-                        centro={pontosCentrais.SANTACATARINA}/>
+                        nome="Santa Catarina"/>
                     <Poligono
                         coordinates={poligonos.SAOPAULO}
-                        nome="São Paulo"
-                        centro={pontosCentrais.SAOPAULO}/>
+                        nome="São Paulo"/>
                     <Poligono
                         coordinates={poligonos.SERGIPE}
-                        nome="Sergipe"
-                        centro={pontosCentrais.SERGIPE}/>
+                        nome="Sergipe"/>
                     <Poligono
                         coordinates={poligonos.TOCANTINS}
-                        nome="Tocantins"
-                        centro={pontosCentrais.TOCANTINS}/>
+                        nome="Tocantins"/>
                 </MapView>
                 <TouchableOpacity style={styles.btn}>
                     <Icon
