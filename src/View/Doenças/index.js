@@ -9,24 +9,17 @@ export default function(props){
     const [carregando, setCarregando] =  useState(true);
     const [erro, setErro] = useState(null);
     const [doencas, setDoencas] = useState([]);
-    const info = props.route.params.doencas
     const navigation = useNavigation()
 
     useEffect(()=>{
-        const estado = props.route.params.estado;
+        const estado = props.route.params;
         buscarDoencasPorEstado(estado)
             .then(itens => {
-                console.log(itens)
                 setDoencas(itens);
                 setCarregando(false);
             }
         )
     }, []);
-
-    function navegar(item){
-        const doenca = item;
-        navigation.navigate("Informações", doenca)
-    }
 
     //RenderItem da flatList
     function renderItem(props){
@@ -35,8 +28,8 @@ export default function(props){
                 style={styles.containerRenderItem}
                 onPress={() => {navigation.navigate("Informações", props)}}>
 
-                <Text style={styles.txtTitulo}>{props.name}</Text>
-                <Text style={styles.txtDescricao}>{props.scientificName}</Text>
+                <Text style={styles.txtTitulo}>{props.scientificName}</Text>
+                <Text style={styles.txtDescricao}>{props.etiologicalAgent}</Text>
             </TouchableOpacity>
         )
     }
@@ -46,7 +39,7 @@ export default function(props){
             <FlatList
                 columnWrapperStyle={styles.flatList}
                 data={doencas}
-                keyExtractor={item => item.titulo}
+                keyExtractor={item => item._id}
                 renderItem={({item}) => renderItem(item)}
                 numColumns={2}/>
         </View>
