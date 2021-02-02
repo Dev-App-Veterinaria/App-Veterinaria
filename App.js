@@ -5,7 +5,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Doencas from './src/View/Doenças';
 import Informacoes from './src/View/Informações'
 import Mapa from './src/View/Mapa';
-import normalizador from './src/Controllers/normalizador'
+import normalizador from './src/Controllers/normalizador';
+import Glossario from './src/View/Glossario';
 
 const styles = StyleSheet.create({
     headerStyle: {
@@ -39,6 +40,9 @@ export default function App() {
                   name="Informações"
                   component={Informacoes}
                   options={({ route }) => ({ title: route.params.titulo })}/>
+                <Screen
+                  name="Glossario"
+                  component={Glossario}/>
           </Navigator>
       </NavigationContainer>
   );

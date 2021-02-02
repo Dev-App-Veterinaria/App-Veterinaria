@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import buscarDoencasPorEstado from '../../Controllers/controladorDoenças';
+import {buscarDoencasPorEstado} from '../../Controllers/controladorDoenças';
 import styles from './styles'
 
 // Tela das doenças de cada estado
@@ -16,7 +16,6 @@ export default function(props){
         const estado = props.route.params.estado;
         buscarDoencasPorEstado(estado)
             .then(itens => {
-                console.log(itens)
                 setDoencas(itens);
                 setCarregando(false);
             }
