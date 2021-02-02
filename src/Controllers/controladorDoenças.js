@@ -1,4 +1,3 @@
-
 const server = "http://192.168.1.14:3001/api/disease/"
 
 async function listarDoencas(){

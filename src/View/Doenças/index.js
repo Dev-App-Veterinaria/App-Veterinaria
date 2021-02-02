@@ -9,11 +9,10 @@ export default function(props){
     const [carregando, setCarregando] =  useState(true);
     const [erro, setErro] = useState(null);
     const [doencas, setDoencas] = useState([]);
-    const info = props.route.params.doencas
     const navigation = useNavigation()
 
     useEffect(()=>{
-        const estado = props.route.params.estado;
+        const estado = props.route.params;
         buscarDoencasPorEstado(estado)
             .then(itens => {
                 setDoencas(itens);
@@ -21,11 +20,6 @@ export default function(props){
             }
         )
     }, []);
-
-    function navegar(item){
-        const doenca = item;
-        navigation.navigate("Informações", doenca)
-    }
 
     //RenderItem da flatList
     function renderItem(props){

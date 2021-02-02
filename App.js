@@ -31,15 +31,15 @@ export default function App() {
                   headerTitleStyle: styles.headerTitleStyle,
                   headerTintColor: 'white'}}>
               <Screen
-                  name="Nome Do App" component={Mapa}/>
+                  name="Parasitour" component={Mapa}/>
               <Screen
                   name="Doenças"
                   component={Doencas}
-                  options={({ route }) => ({ title: route.params.titulo })}/>
+                  options={({ route }) => ({ title: route.params })}/>
               <Screen
                   name="Informações"
                   component={Informacoes}
-                  options={({ route }) => ({ title: route.params.titulo })}/>
+                  options={({ route }) => ({ title: route.params.scientificName})}/>
                 <Screen
                   name="Glossario"
                   component={Glossario}/>
