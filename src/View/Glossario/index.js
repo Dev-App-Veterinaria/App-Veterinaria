@@ -7,6 +7,7 @@ import {
     View  } from "react-native";
 import {listarDoencas} from "../../Controllers/controladorDoenças";
 import { useNavigation } from '@react-navigation/native';
+import BarraDeBusca from '../../Components/Visuais/barraDeBusca';
 import styles from "./styles";
 
 export default function Glossario(){
@@ -40,10 +41,11 @@ export default function Glossario(){
 
     return(
         <View style={styles.container}>
+            <BarraDeBusca/>
             <FlatList contentContainerStyle={styles.flatList}
                 data={doencas}
                 keyExtractor={item => item._id}
-                renderItem={({item}) => itemListModel(item)}/>
+                renderItem={({item}) => itemListModel(item)}/>            
         </View>
     )
 } 
