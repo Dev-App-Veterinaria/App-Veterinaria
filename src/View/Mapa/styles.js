@@ -1,13 +1,15 @@
 import {Dimensions, StyleSheet} from "react-native";
 import normalizador from "../../Controllers/normalizador";
 
+const tamanhoBarraDeBusca = normalizador.heightPercentageToDP("6%"); 
+
 export default StyleSheet.create({
     container: {
-        flex: 1,
+        flex: 2,
     },
     mapa: {
         width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height
+        height: Dimensions.get('window').height - tamanhoBarraDeBusca,
     },
     btn: {
         position: "absolute"

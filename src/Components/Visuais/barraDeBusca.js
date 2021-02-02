@@ -5,14 +5,13 @@ import normalizador from '../../Controllers/normalizador';
 
 const styles = StyleSheet.create({
     container: {
-        position: 'absolute',
         alignItems: "center",
         height: normalizador.heightPercentageToDP("6%"),
         width: normalizador.widthPercentageToDP("100%"),
         flexDirection: "row-reverse",
         paddingTop: 0,
         paddingHorizontal: 2,
-        marginBottom: 3,
+        marginBottom: 0,
         backgroundColor: "#4f40b5"
     },
     textInput: {
