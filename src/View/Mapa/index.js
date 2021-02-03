@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React, { createRef } from 'react';
-import { View, TouchableOpacity, Dimensions } from 'react-native';
+import { View,Text, TouchableOpacity, Dimensions } from 'react-native';
 import MapView, { Polygon } from 'react-native-maps';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -44,6 +44,7 @@ export default function (){
     return(
         <View style={styles.container}>
             <StatusBar style="light" />
+            <BarraDeBusca/>
             <View style={styles.containerMapa}>
                 <MapView
                     initialRegion={{longitude: -54.312460, latitude: -9.50000, latitudeDelta: 40, longitudeDelta: 40}}
@@ -134,6 +135,12 @@ export default function (){
                         coordinates={poligonos.TOCANTINS}
                         nome="Tocantins"/>
                 </MapView>
+                <TouchableOpacity style={
+                    {position: "absolute", 
+                    start: 0, top: 40, padding: 10, backgorundColor:"#4f40b5"}}
+                    onPress={() =>{navigation.navigate("Glossario")}}>
+                    <Text style={{color:"#4f40b5"}}>Ver glossário</Text>
+                </TouchableOpacity>
                 <TouchableOpacity style={styles.btn}>
                     <Icon
                         name="information"
@@ -141,7 +148,7 @@ export default function (){
                         color="#4f40b5"/>
                 </TouchableOpacity>
             </View>
-            <BarraDeBusca/>
+            
         </View>
         )
 }

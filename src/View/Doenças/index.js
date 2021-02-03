@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { View, Text, FlatList, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import buscarDoencasPorEstado from '../../Controllers/controladorDoenças';
+import {buscarDoencasPorEstado} from '../../Controllers/controladorDoenças';
 import styles from './styles'
 
 // Tela das doenças de cada estado
