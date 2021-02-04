@@ -18,5 +18,16 @@ export default StyleSheet.create({
         justifyContent: 'flex-end',
         alignItems: 'flex-end'
     },
-    tamanhoBtn : normalizador.widthPercentageToDP("10%"),
+    barraDeBusca:{
+        position: 'absolute',
+        top: 0,
+        alignItems: "center",
+        height: normalizador.heightPercentageToDP("6%"),
+        width: normalizador.widthPercentageToDP("100%"),
+        flexDirection: "row-reverse",
+        paddingTop: 0,
+        paddingHorizontal: 2,
+        marginBottom: 3,
+        backgroundColor: "#4f40b5"
+    }
 })

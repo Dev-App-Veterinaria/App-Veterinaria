@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import normalizador from "../../Controllers/normalizador";
 
 const styles = StyleSheet.create({
 container: {
@@ -45,6 +46,16 @@ listitemContainerDescricao: {
     paddingEnd: 30,
     borderBottomWidth: 0.03,
     borderBottomColor: "#e4ddf3",
+},
+barraDeBusca: {
+    alignItems: "center",
+        height: normalizador.heightPercentageToDP("6%"),
+        width: normalizador.widthPercentageToDP("100%"),
+        flexDirection: "row-reverse",
+        paddingTop: 0,
+        paddingHorizontal: 2,
+        marginBottom: 3,
+        backgroundColor: "#4f40b5"
 }
     
 })

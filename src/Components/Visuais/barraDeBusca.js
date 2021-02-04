@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     }
 });
 
-export default function(){
+export default function BarraDeBusca(props){
     const [busca, setBusca] = useState("");
 
     //Verifica se o campo de busca é válido
@@ -58,7 +58,7 @@ export default function(){
     }
 
     return (
-        <View style={styles.container}>
+        <View style={props.style}>
             <TextInput
                 style={styles.textInput}
                 onChangeText={(a) => setBusca(a)}
