@@ -44,7 +44,6 @@ export default function (){
     return(
         <View style={styles.container}>
             <StatusBar style="light" />
-            <BarraDeBusca/>
             <View style={styles.containerMapa}>
                 <MapView
                     initialRegion={{longitude: -54.312460, latitude: -9.50000, latitudeDelta: 40, longitudeDelta: 40}}
@@ -135,6 +134,8 @@ export default function (){
                         coordinates={poligonos.TOCANTINS}
                         nome="Tocantins"/>
                 </MapView>
+                <BarraDeBusca
+                    style={styles.barraDeBusca}/>
                 <TouchableOpacity style={
                     {position: "absolute", 
                     start: 0, top: 40, padding: 10, backgorundColor:"#4f40b5"}}
@@ -146,9 +147,8 @@ export default function (){
                         name="information"
                         size={styles.tamanhoBtn}
                         color="#4f40b5"/>
-                </TouchableOpacity>
-            </View>
-            
+                </TouchableOpacity>   
+            </View> 
         </View>
         )
 }

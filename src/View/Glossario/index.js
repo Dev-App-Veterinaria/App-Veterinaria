@@ -41,7 +41,8 @@ export default function Glossario(){
 
     return(
         <View style={styles.container}>
-            <BarraDeBusca/>
+            <BarraDeBusca
+             style={styles.barraDeBusca}/>
             <FlatList contentContainerStyle={styles.flatList}
                 data={doencas}
                 keyExtractor={item => item._id}
