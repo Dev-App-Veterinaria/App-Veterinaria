@@ -135,11 +135,12 @@ export default function (){
                         nome="Tocantins"/>
                 </MapView>
                 <BarraDeBusca
-                    style={styles.barraDeBusca}/>
+                    onChangeText={() => {}}
+                    style={{position: "absolute", top: 0}}/>
                 <TouchableOpacity style={
-                    {position: "absolute", 
+                    {position: "absolute",
                     start: 0, top: 40, padding: 10, backgorundColor:"#4f40b5"}}
-                    onPress={() =>{navigation.navigate("Glossario")}}>
+                    onPress={() =>{navigation.navigate("Glossario", {busca: "", nome: "Glossário"})}}>
                     <Text style={{color:"#4f40b5"}}>Ver glossário</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.btn}>
@@ -147,8 +148,8 @@ export default function (){
                         name="information"
                         size={styles.tamanhoBtn}
                         color="#4f40b5"/>
-                </TouchableOpacity>   
-            </View> 
+                </TouchableOpacity>
+            </View>
         </View>
         )
 }

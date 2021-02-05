@@ -15,8 +15,8 @@ async function listarDoencas(){
 
             // retorna uma promise com os dados em JSON
             return response.json()
-        })     
-} 
+        })
+}
 
 async function buscarDoencasPorEstado(estado) {
     const requisicao = `?states=${estado}`;
