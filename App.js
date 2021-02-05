@@ -40,9 +40,10 @@ export default function App() {
                   name="Informações"
                   component={Informacoes}
                   options={({ route }) => ({ title: route.params.scientificName})}/>
-                <Screen
+              <Screen
                   name="Glossario"
-                  component={Glossario}/>
+                  component={Glossario}
+                  options={({ route }) => ({ title: route.params.nome})}/>
           </Navigator>
       </NavigationContainer>
   );
