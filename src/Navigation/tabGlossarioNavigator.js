@@ -16,6 +16,7 @@ export default function TabGlossarioNavigator(){
             <Screen
                 name="Glossário"
                 component={Glossario}
+                // options={({ route }) => ({ title: route.params === undefined ? "Glossário" : route.params.nome })}
             />
             <Screen
                   name="Informações"

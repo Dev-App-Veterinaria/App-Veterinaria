@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import React, { createRef } from 'react';
+import React, { createRef , useState} from 'react';
 import { View,Text, TouchableOpacity, Dimensions } from 'react-native';
 import MapView, { Polygon } from 'react-native-maps';
 import { useNavigation } from '@react-navigation/native';
@@ -13,6 +13,7 @@ import mapStyle from './mapStyle.json';
 export default function (){
     const navigation = useNavigation()
     const mapView = createRef()
+    const [textoBusca, setTextoBusca] = useState('');
 
     //Função usada para limitar a área de scroll do usuário, é chamada depois que o mapa é carregado
     const setMapBoundaries = () => {
@@ -135,14 +136,9 @@ export default function (){
                         nome="Tocantins"/>
                 </MapView>
                 <BarraDeBusca
-                    onChangeText={() => {}}
+                    onChangeText={(texto) => {setTextoBusca(texto)}}
+                    value={textoBusca}
                     style={{position: "absolute", top: 0}}/>
-                <TouchableOpacity style={
-                    {position: "absolute",
-                    start: 0, top: 40, padding: 10, backgorundColor:"#4f40b5"}}
-                    onPress={() =>{navigation.navigate("Glossario", {busca: "", nome: "Glossário"})}}>
-                    <Text style={{color:"#4f40b5"}}>Ver glossário</Text>
-                </TouchableOpacity>
                 <TouchableOpacity style={styles.btn}>
                     <Icon
                         name="information"

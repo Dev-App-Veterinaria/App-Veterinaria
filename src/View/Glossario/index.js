@@ -10,16 +10,35 @@ import { useNavigation } from '@react-navigation/native';
 import BarraDeBusca from '../../Components/Visuais/barraDeBusca';
 import styles from "./styles";
 
-export default function Glossario(props){
-    const [encontradas, setEncontradas] = React.useState(null)
+export default function Glossario({route}, ...props){
+    const [encontradas, setEncontradas] = React.useState(null);
+    const [textoBarra, setTextoBarra] = React.useState('');
     const [doencas, setDoencas] = React.useState([]);
     const [carregado, setCarregando] = React.useState(true);
     const navigation = useNavigation();
 
-    //Função passada como parâmetro para a tela da barra de busca
-    function onChangeText(a){
-        autoComplete(a)
-    }
+    /**
+     * Métodos do ciclo de vida da tela
+     */
+    //Inicializa as doenças
+    React.useEffect(()=>{
+        listarDoencas()
+            .then(itens => {
+                setDoencas(itens);
+            }
+        )
+    }, []);
+
+    React.useEffect(()=>{
+        try{
+            if(route.params.busca !== undefined){
+                setTextoBarra(route.params.busca);
+            }
+        }catch(e){
+            console.log(e);
+        }
+        
+    }, [route.params]);
 
     //É responsável por atualizar as doenças com base na pesquisa dada pela barra de busca
     function autoComplete(busca){
@@ -35,20 +54,15 @@ export default function Glossario(props){
             }
         }
     }
-
-    //Inicializa as doenças
+ 
     React.useEffect(()=>{
-        listarDoencas()
-            .then(itens => {
-                setDoencas(itens);
-            }
-        )
-    }, []);
+        autoComplete(textoBarra)
+    },[textoBarra])
 
     /*Se for dado uma busca prévia pelo usuário, as doencas encontradas são atualizadas
       com base na busca, se não, é listado todas as doenças.*/
     React.useEffect(()=>{
-        autoComplete(props.route.params.busca)
+        autoComplete(textoBarra)
     }, [doencas]);
 
     //RenderItem da flatList
@@ -71,7 +85,8 @@ export default function Glossario(props){
     return(
         <View style={styles.container}>
             <BarraDeBusca
-                onChangeText={(a) => onChangeText(a)}
+                onChangeText={(a)=> setTextoBarra(a)}
+                value={textoBarra}
                 style={{position: "relative"}}/>
             <FlatList contentContainerStyle={styles.flatList}
                 data={encontradas !== null ? encontradas : doencas}
