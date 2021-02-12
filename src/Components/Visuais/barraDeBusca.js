@@ -45,14 +45,13 @@ const styles = StyleSheet.create({
 
 export default function BarraDeBusca(props){
     const navigation = useNavigation()
-    const [busca, setBusca] = useState("");
 
     //Verifica se o campo de busca é válido, se sim, leva o usuário para a tela de resultados
     function validarEntrada() {
-        if (busca == null){
+        if (props.value == null){
             exibirToastErro();
         }else{
-            if (busca.trim() == null || busca.trim() === "") {
+            if (props.value.trim() == null || props.value.trim() === "") {
                 exibirToastErro()
             }else{
                 handleNavigateToSearch()
@@ -62,13 +61,7 @@ export default function BarraDeBusca(props){
 
     //Faz a navegação para a tela  de glossário porém passando a busca e o nome
     function handleNavigateToSearch(){
-        navigation.navigate("Glossario", {busca: busca, nome: "Pesquisa"})
-    }
-
-    //Guarda o texto digitado pelo usuário e usa a função passada como parâmetro pelo elemento pai
-    function onChangeText(a){
-        setBusca(a)
-        props.onChangeText(a)
+        navigation.navigate("Glossário", {screen: "Glossário", busca: props.value, tipoDeBusca: "Pesquisa"})
     }
 
     //Exibe uma mensagem de erro referente a pesquisa
@@ -81,12 +74,15 @@ export default function BarraDeBusca(props){
     }
 
     return (
-        <View style={{...styles.barraDeBusca, ...props.style}}>
+        <View style={{...styles.barraDeBusca, ...props.style, ...props}}>
             <TextInput
                 style={styles.textInput}
-                onChangeText={(a) => onChangeText(a)}
+                onChangeText={props.onChangeText}
+                onSubmitEditing={() =>
+                    validarEntrada()}
+                returnKeyType={"search"}
                 placeholder="Digite o termo a ser buscado"
-                value={busca}
+                value={props.value}
             />
             <TouchableOpacity
                 style={styles.button}
