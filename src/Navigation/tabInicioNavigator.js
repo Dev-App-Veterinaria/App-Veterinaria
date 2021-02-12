@@ -15,7 +15,7 @@ export default function TabInicioNavigator(){
                   headerTitleStyle: styles.headerTitleStyle,
                   headerTintColor: 'white'}}>
               <Screen
-                  name="Parasitour" 
+                  name="Parasitour"
                   component={Mapa}/>
               <Screen
                   name="Doenças"
@@ -26,9 +26,9 @@ export default function TabInicioNavigator(){
                   component={Informacoes}
                   options={({ route }) => ({ title: route.params.scientificName})}/>
                 <Screen
-                  name="Glossário"
+                  name="Glossario"
                   component={Glossario}
-                  options={({route})=>({title:route.params.tipoDeBusca === undefined ?"Glossário" : route.params.tipoDeBusca})}/>
+                  options={({ route }) => ({ title: route.params.tipoDeBusca === undefined ? "Glossário" : route.params.tipoDeBusca })}/>
         </Navigator>
     )
 }

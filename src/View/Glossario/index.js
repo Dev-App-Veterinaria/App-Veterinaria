@@ -40,7 +40,7 @@ export default function Glossario({route}, ...props){
         }catch(e){
             console.log(e);
         }
-        
+
     }, [route.params]);
 
     //É responsável por atualizar as doenças com base na pesquisa dada pela barra de busca
@@ -57,7 +57,7 @@ export default function Glossario({route}, ...props){
             }
         }
     }
- 
+
     React.useEffect(()=>{
         autoComplete(textoBarra)
     },[textoBarra])
