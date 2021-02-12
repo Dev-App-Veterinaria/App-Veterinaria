@@ -61,7 +61,7 @@ export default function BarraDeBusca(props){
 
     //Faz a navegação para a tela  de glossário porém passando a busca e o nome
     function handleNavigateToSearch(){
-        navigation.navigate("Glossario", {screen: "Glossário", busca: props.value, tipoDeBusca: "Pesquisa"})
+        navigation.navigate("Glossário", {screen: "Glossário", busca: props.value, tipoDeBusca: "Pesquisa"})
     }
 
     //Exibe uma mensagem de erro referente a pesquisa
@@ -78,6 +78,9 @@ export default function BarraDeBusca(props){
             <TextInput
                 style={styles.textInput}
                 onChangeText={props.onChangeText}
+                onSubmitEditing={() =>
+                    validarEntrada()}
+                returnKeyType={"search"}
                 placeholder="Digite o termo a ser buscado"
                 value={props.value}
             />

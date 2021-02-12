@@ -50,7 +50,7 @@ export default function Glossario({route}, ...props){
                 })
                 setEncontradas(resultado)
             }else{
-                setEncontradas(null)
+                setEncontradas(doencas)
             }
         }
     }
@@ -89,7 +89,7 @@ export default function Glossario({route}, ...props){
                 value={textoBarra}
                 style={{position: "relative"}}/>
             <FlatList contentContainerStyle={styles.flatList}
-                data={encontradas !== null ? encontradas : doencas}
+                data={encontradas}
                 keyExtractor={item => item._id}
                 renderItem={({item}) => itemListModel(item)}/>
         </View>
