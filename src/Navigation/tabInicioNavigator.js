@@ -26,7 +26,7 @@ export default function TabInicioNavigator(){
                   component={Informacoes}
                   options={({ route }) => ({ title: route.params.scientificName})}/>
                 <Screen
-                  name="Glossario"
+                  name="Glossário"
                   component={Glossario}
                   options={({ route }) => ({ title: route.params.tipoDeBusca === undefined ? "Glossário" : route.params.tipoDeBusca })}/>
         </Navigator>

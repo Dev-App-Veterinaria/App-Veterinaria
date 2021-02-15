@@ -22,14 +22,17 @@ export default function Glossario({route}, ...props){
     /**
      * Métodos do ciclo de vida da tela
      */
-    //Inicializa as doenças
-    React.useEffect(()=>{
+    function inicializarDoencas(){
         listarDoencas()
             .then(itens => {
-                setDoencas(itens);
-                setCarregando(false);
-            }
-        )
+                    setDoencas(itens);
+                }
+            )
+    }
+
+    //Inicializa as doenças
+    React.useEffect(()=>{
+        inicializarDoencas()
     }, []);
 
     React.useEffect(()=>{
@@ -40,7 +43,6 @@ export default function Glossario({route}, ...props){
         }catch(e){
             console.log(e);
         }
-
     }, [route.params]);
 
     //É responsável por atualizar as doenças com base na pesquisa dada pela barra de busca
