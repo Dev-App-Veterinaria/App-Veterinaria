@@ -1,5 +1,6 @@
 import React from "react";
 import {
+    ActivityIndicator,
     FlatList,
     Image,
     TouchableOpacity,
@@ -8,13 +9,14 @@ import {
 import {listarDoencas} from "../../Controllers/controladorDoenças";
 import { useNavigation } from '@react-navigation/native';
 import BarraDeBusca from '../../Components/Visuais/barraDeBusca';
+import TelaDeErro from '../../Components/Visuais/telaDeErro';
 import styles from "./styles";
 
 export default function Glossario({route}, ...props){
     const [encontradas, setEncontradas] = React.useState(null);
     const [textoBarra, setTextoBarra] = React.useState('');
     const [doencas, setDoencas] = React.useState([]);
-    const [carregado, setCarregando] = React.useState(true);
+    const [carregando, setCarregando] = React.useState(true);
     const navigation = useNavigation();
 
     /**
@@ -25,6 +27,7 @@ export default function Glossario({route}, ...props){
         listarDoencas()
             .then(itens => {
                 setDoencas(itens);
+                setCarregando(false);
             }
         )
     }, []);
@@ -81,6 +84,21 @@ export default function Glossario({route}, ...props){
             </TouchableOpacity>
         )
     }
+    if(carregando){
+        return <ActivityIndicator style={{flex: 1}} size="large" color="#4f40b5" />
+    }
+
+    let exibirBusca;
+    if(encontradas.length >0){
+        exibirBusca =(
+            <FlatList contentContainerStyle={styles.flatList}
+            data={encontradas}
+            keyExtractor={item => item._id}
+            renderItem={({item}) => itemListModel(item)}/>
+        )
+    }else{
+        exibirBusca = <TelaDeErro mensagem={"Nenhum resultado, \nVerifique sua busca"} />
+    }
 
     return(
         <View style={styles.container}>
@@ -88,10 +106,7 @@ export default function Glossario({route}, ...props){
                 onChangeText={(a)=> setTextoBarra(a)}
                 value={textoBarra}
                 style={{position: "relative"}}/>
-            <FlatList contentContainerStyle={styles.flatList}
-                data={encontradas}
-                keyExtractor={item => item._id}
-                renderItem={({item}) => itemListModel(item)}/>
+            {exibirBusca}
         </View>
     )
 }
