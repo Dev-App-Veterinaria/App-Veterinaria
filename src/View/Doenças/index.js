@@ -1,7 +1,8 @@
 import React, {useState, useEffect} from 'react'
-import { View, Text, FlatList, TouchableOpacity } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import {buscarDoencasPorEstado} from '../../Controllers/controladorDoenças';
+import TelaDeErro from '../../Components/Visuais/telaDeErro';
 import styles from './styles'
 
 // Tela das doenças de cada estado
@@ -18,7 +19,10 @@ export default function(props){
                 setDoencas(itens);
                 setCarregando(false);
             }
-        )
+        ).catch(erro =>{
+            setErro(erro);
+            setCarregando(false);
+        })
     }, []);
 
     //RenderItem da flatList
@@ -34,6 +38,25 @@ export default function(props){
         )
     }
 
+    if(carregando){
+        return <ActivityIndicator style={{flex: 1}} size="large" color="#4f40b5" />
+    }
+
+    if (erro) {
+        return (
+          <TelaDeErro
+            //A tela de erro recebe um erro ou true para saber q está lidando com um problema
+            // Passando, false ou ignorando o parametro fará com q n seja exibido um botão para chamar a função.
+            erro={erro}
+            mensagem="Erro! Verifique sua conexão com a internet e tente novamente"
+            mensagemBotao="Tentar novamente"
+            botao={() => { console.log("HEY") }} />
+        )
+    }
+    if(doencas.length < 1){
+        return <TelaDeErro mensagem={"Nenhum resultado, \nVerifique sua busca"} />
+    }
+
     return(
         <View style={styles.container}>
             <FlatList
@@ -43,5 +66,5 @@ export default function(props){
                 renderItem={({item}) => renderItem(item)}
                 numColumns={2}/>
         </View>
-    )
+    ) 
 }
