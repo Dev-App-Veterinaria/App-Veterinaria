@@ -51,50 +51,43 @@ const styles = StyleSheet.create({
 
 
 
-export default class TelaDeErro extends React.Component {
-    constructor(props) {
-        super(props)
-    }
+export default function TelaDeErro(props) {
 
-    render() {
-        //Tela exibida quando Houver Erros de Solicitação na API
-        if (this.props.erro) {
-            return (
-                <View style={styles.container}>
-                    <Image
-                        style={styles.imagem}
-                        source={require("../../../assets/icon.png")} />
-                    <Text style={styles.texto}>
-                        {this.props.mensagem}
-                    </Text>
-                    <TouchableOpacity
-                        style={styles.botao}
-                        onPress={this.props.botao}>
-
-                        <Text style={styles.textoBotao}>
-                            {this.props.mensagemBotao}
-                        </Text>
-
-                    </TouchableOpacity>
-                </View>
-
-            )
-        }
-
-
-        //Tela para buscas mão encontradas
+    //Tela exibida quando Houver Erros de Solicitação na API
+    if (props.erro) {
         return (
             <View style={styles.container}>
                 <Image
                     style={styles.imagem}
                     source={require("../../../assets/icon.png")} />
                 <Text style={styles.texto}>
-                    {this.props.mensagem}
+                    {props.mensagem}
                 </Text>
+                <TouchableOpacity
+                    style={styles.botao}
+                    onPress={props.botao}>
+
+                    <Text style={styles.textoBotao}>
+                        {props.mensagemBotao}
+                    </Text>
+
+                </TouchableOpacity>
             </View>
-        );
 
-
+        )
     }
+
+
+    //Tela para buscas mão encontradas
+    return (
+        <View style={styles.container}>
+            <Image
+                style={styles.imagem}
+                source={require("../../../assets/icon.png")} />
+            <Text style={styles.texto}>
+                {props.mensagem}
+            </Text>
+        </View>
+    );
 
 }
