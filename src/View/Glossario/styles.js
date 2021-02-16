@@ -1,5 +1,4 @@
 import {StyleSheet} from 'react-native';
-import normalizador from "../../Controllers/normalizador";
 
 const styles = StyleSheet.create({
     container: {
@@ -26,13 +25,20 @@ const styles = StyleSheet.create({
         marginTop: 2,
         color: '#000'
     },
-    imagem:{
+    containerImagem: {
         width: 60,
         height: 60,
         borderRadius: 30,
+        alignContent: "center",
+        justifyContent: "center",
+        backgroundColor: "#4f40b5",
         flexWrap: "wrap",
         marginTop: 10,
-        marginHorizontal: 15
+        marginHorizontal: 16
+    }, 
+    imagem:{
+        width: 45,
+        height: 45,
     },
     listitemContainerDescricao: {
         flex: 1,

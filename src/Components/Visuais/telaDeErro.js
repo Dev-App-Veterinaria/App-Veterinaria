@@ -1,4 +1,3 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { Text, View, Image, TouchableOpacity } from "react-native";
 import { StyleSheet } from "react-native";
@@ -78,7 +77,7 @@ export default function TelaDeErro(props) {
     }
 
 
-    //Tela para buscas mão encontradas
+    //Tela para buscas não encontradas
     return (
         <View style={styles.container}>
             <Image

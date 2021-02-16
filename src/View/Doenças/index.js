@@ -55,7 +55,11 @@ export default function(props){
             erro={erro}
             mensagem="Erro! Verifique sua conexão com a internet e tente novamente"
             mensagemBotao="Tentar novamente"
-            botao={() => { console.log("HEY") }} />
+            botao={() => {
+                setCarregando(true);
+                setErro(null);
+                inicializarDoencas();
+            }} />
         )
     }
 

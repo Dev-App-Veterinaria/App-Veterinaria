@@ -1,36 +1,53 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createStackNavigator } from '@react-navigation/stack';
-import {Image} from 'react-native';
 import TabInicioNavigator from './tabInicioNavigator';
 import TabGlossarioNavigator from './tabGlossarioNavigator';
-import styles from './styles';
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 
-function BottomTabIcon(){
-    return <Image 
-        style={{height: 30, width: 30}}
-        source={require('../../assets/favicon.png')}/>
+function BottomTabIcon(props){
+    let iconName = props.focused ? props.focusedIcon : props.icon;
+    return <Icon name={iconName} color={props.color} size={28} />
 }
+
 
 const BottomTab = createBottomTabNavigator();
 
 export default function BottomTabNavigator() {
     return(
         <BottomTab.Navigator
-        initialRouteName="Inicio">
+        tabBarOptions={{
+            activeTintColor: '#fff',
+            inactiveTintColor: '#dbdbdb',
+                style: {
+                    backgroundColor: '#4f40b5',
+                }
+         }}
+            initialRouteName="Inicio">
         <BottomTab.Screen 
             name="inicio" 
             component={TabInicioNavigator}
             options={{
-                tabBarIcon: ()=><BottomTabIcon/>
+                tabBarIcon: ({focused, color})=>
+                    <BottomTabIcon 
+                        color={color} 
+                        focused={focused}
+                        icon="home-variant-outline"
+                        focusedIcon="home-variant"
+                    />
             }}
         />
         <BottomTab.Screen 
             name="Glossário" 
             component={TabGlossarioNavigator}
             options={{
-                tabBarIcon: ()=><BottomTabIcon/>
+                tabBarIcon: ({focused, color})=>
+                    <BottomTabIcon 
+                        color={color} 
+                        focused={focused}
+                        icon="book-outline"
+                        focusedIcon="book"
+                    />
             }}
         />
     </BottomTab.Navigator>

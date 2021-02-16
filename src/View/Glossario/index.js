@@ -10,9 +10,10 @@ import {listarDoencas} from "../../Controllers/controladorDoenças";
 import { useNavigation } from '@react-navigation/native';
 import BarraDeBusca from '../../Components/Visuais/barraDeBusca';
 import TelaDeErro from '../../Components/Visuais/telaDeErro';
+import Icon from 'react-native-vector-icons/FontAwesome5'
 import styles from "./styles";
 
-export default function Glossario({route}, ...props){
+export default function Glossario({route}, props){
     const [encontradas, setEncontradas] = React.useState(null);
     const [textoBarra, setTextoBarra] = React.useState('');
     const [doencas, setDoencas] = React.useState([]);
@@ -83,9 +84,11 @@ export default function Glossario({route}, ...props){
             <TouchableOpacity
                 style={styles.listitem}
                 onPress={() => {navigation.navigate("Informações", props)}}>
+                <View style={styles.containerImagem}>
                 <Image
                     style={styles.imagem}
-                    source={require('../../../assets/favicon.png')} />
+                    source={require('../../../assets/iconeDoencas.png')} />
+                </View>
                 <View style={styles.listitemContainerDescricao}>
                     <Text style={styles.txtTitulo}>{props.scientificName}</Text>
                     <Text style={styles.txtDescricao}>{props.name}</Text>
@@ -118,7 +121,10 @@ export default function Glossario({route}, ...props){
                 erro={erro}
                 mensagem="Erro! Verifique sua conexão com a internet e tente novamente"
                 mensagemBotao="Tentar novamente"
-                botao={() => { console.log("HEY") }} />
+                botao={() =>{
+                    setCarregando(true);
+                    setErro(null);
+                    inicializarDoencas()}} />
         )
     }
 
