@@ -16,18 +16,25 @@ export default function Glossario({route}, ...props){
     const [encontradas, setEncontradas] = React.useState(null);
     const [textoBarra, setTextoBarra] = React.useState('');
     const [doencas, setDoencas] = React.useState([]);
+    const [erro, setErro] = React.useState(null);
     const [carregando, setCarregando] = React.useState(true);
     const navigation = useNavigation();
 
     /**
      * Métodos do ciclo de vida da tela
      */
+    //Função que faz a solicitação das doenças novamente no servidor
     function inicializarDoencas(){
         listarDoencas()
             .then(itens => {
                     setDoencas(itens);
+                    setCarregando(false)
                 }
             )
+            .catch(erro =>{
+                setErro(erro);
+                setCarregando(false);
+            })
     }
 
     //Inicializa as doenças
@@ -86,12 +93,13 @@ export default function Glossario({route}, ...props){
             </TouchableOpacity>
         )
     }
+
     if(carregando){
         return <ActivityIndicator style={{flex: 1}} size="large" color="#4f40b5" />
     }
 
     let exibirBusca;
-    if(encontradas.length >0){
+    if(encontradas.length > 0){
         exibirBusca =(
             <FlatList contentContainerStyle={styles.flatList}
             data={encontradas}
@@ -100,6 +108,18 @@ export default function Glossario({route}, ...props){
         )
     }else{
         exibirBusca = <TelaDeErro mensagem={"Nenhum resultado, \nVerifique sua busca"} />
+    }
+
+    if (erro) {
+        return (
+            <TelaDeErro
+                //A tela de erro recebe um erro ou true para saber q está lidando com um problema
+                // Passando, false ou ignorando o parametro fará com q n seja exibido um botão para chamar a função.
+                erro={erro}
+                mensagem="Erro! Verifique sua conexão com a internet e tente novamente"
+                mensagemBotao="Tentar novamente"
+                botao={() => { console.log("HEY") }} />
+        )
     }
 
     return(

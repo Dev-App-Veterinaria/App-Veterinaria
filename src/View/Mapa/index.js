@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React, { createRef , useState} from 'react';
-import { View,Text, TouchableOpacity, Dimensions } from 'react-native';
+import {View, TouchableOpacity, Dimensions} from 'react-native';
 import MapView, { Polygon } from 'react-native-maps';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -13,7 +13,8 @@ import mapStyle from './mapStyle.json';
 export default function (){
     const navigation = useNavigation()
     const mapView = createRef()
-    const [textoBusca, setTextoBusca] = useState('');
+    const [textoBusca, setTextoBusca] = useState('')
+    const [carregando, setCarregando] = useState(true)
 
     //Função usada para limitar a área de scroll do usuário, é chamada depois que o mapa é carregado
     const setMapBoundaries = () => {
