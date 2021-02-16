@@ -12,17 +12,22 @@ export default function(props){
     const [doencas, setDoencas] = useState([]);
     const navigation = useNavigation()
 
-    useEffect(()=>{
+    //Função que faz a solicitação das doenças novamente no servidor
+    function inicializarDoencas(){
         const estado = props.route.params;
         buscarDoencasPorEstado(estado)
             .then(itens => {
                 setDoencas(itens);
                 setCarregando(false);
-            }
-        ).catch(erro =>{
-            setErro(erro);
-            setCarregando(false);
-        })
+            })
+            .catch(erro =>{
+                setErro(erro);
+                setCarregando(false);
+            })
+    }
+
+    useEffect(()=>{
+        inicializarDoencas()
     }, []);
 
     //RenderItem da flatList
@@ -53,6 +58,7 @@ export default function(props){
             botao={() => { console.log("HEY") }} />
         )
     }
+
     if(doencas.length < 1){
         return <TelaDeErro mensagem={"Nenhum resultado, \nVerifique sua busca"} />
     }
@@ -66,5 +72,5 @@ export default function(props){
                 renderItem={({item}) => renderItem(item)}
                 numColumns={2}/>
         </View>
-    ) 
+    )
 }
