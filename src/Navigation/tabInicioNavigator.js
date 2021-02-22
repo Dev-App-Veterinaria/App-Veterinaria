@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import Mapa from '../View/Mapa';
-import Glossario from '../View/Glossario';
+import BuscarDoencas from '../View/BuscarDoencas';
 import Doencas from '../View/Doenças';
 import Informacoes from '../View/Informações';
 import styles from './styles';
@@ -26,9 +26,9 @@ export default function TabInicioNavigator(){
                   component={Informacoes}
                   options={({ route }) => ({ title: route.params.scientificName})}/>
                 <Screen
-                  name="Glossário"
-                  component={Glossario}
-                  options={({ route }) => ({ title: route.params.tipoDeBusca === undefined ? "Glossário" : route.params.tipoDeBusca })}/>
+                  name="Pesquisa"
+                  component={BuscarDoencas}
+                  options={({ route }) => ({ title: "Pesquisa"})}/>
         </Navigator>
     )
 }

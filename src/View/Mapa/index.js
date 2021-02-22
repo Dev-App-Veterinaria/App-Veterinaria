@@ -157,6 +157,7 @@ export default function (){
                 <BarraDeBusca
                     onChangeText={(texto) => {setTextoBusca(texto)}}
                     value={textoBusca}
+                    navegacao="Pesquisa"
                     style={{position: "absolute", top: 0}}/>
                 <TouchableOpacity style={styles.btn}>
                     <Icon

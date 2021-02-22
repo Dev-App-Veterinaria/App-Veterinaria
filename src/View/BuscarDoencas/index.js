@@ -12,7 +12,7 @@ import BarraDeBusca from '../../Components/Visuais/barraDeBusca';
 import TelaDeErro from '../../Components/Visuais/telaDeErro';
 import styles from "./styles";
 
-export default function Glossario({route}, props){
+export default function BuscarDoencas({route}, props){
     const [encontradas, setEncontradas] = React.useState(null);
     const [textoBarra, setTextoBarra] = React.useState('');
     const [doencas, setDoencas] = React.useState([]);
@@ -41,7 +41,15 @@ export default function Glossario({route}, props){
     React.useEffect(()=>{
         inicializarDoencas()
     }, []);
-    
+
+    React.useEffect(()=>{
+        if(route.params !== undefined){
+            if(route.params.busca !== undefined){
+                setTextoBarra(route.params.busca);
+            }
+        }
+    }, [route.params]);
+
     //É responsável por atualizar as doenças com base na pesquisa dada pela barra de busca
     function autoComplete(busca){
         if(busca !== undefined){
@@ -122,7 +130,7 @@ export default function Glossario({route}, props){
             <BarraDeBusca
                 onChangeText={(a)=> setTextoBarra(a)}
                 value={textoBarra}
-                navegacao="Glossário"
+                navegacao="Pesquisar"
                 style={{position: "relative"}}/>
             {exibirBusca}
         </View>

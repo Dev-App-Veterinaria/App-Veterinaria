@@ -53,7 +53,7 @@ export default function(props){
             //A tela de erro recebe um erro ou true para saber q está lidando com um problema
             // Passando, false ou ignorando o parametro fará com q n seja exibido um botão para chamar a função.
             erro={erro}
-            mensagem="Erro! Verifique sua conexão com a internet e tente novamente"
+            mensagem="Erro!\n Verifique sua conexão com a internet e tente novamente"
             mensagemBotao="Tentar novamente"
             botao={() => {
                 setCarregando(true);
@@ -64,7 +64,7 @@ export default function(props){
     }
 
     if(doencas.length < 1){
-        return <TelaDeErro mensagem={"Nenhum resultado, \nVerifique sua busca"} />
+        return <TelaDeErro mensagem={"Nenhum resultado encontrado! \nVerifique a sua busca."} />
     }
 
     return(

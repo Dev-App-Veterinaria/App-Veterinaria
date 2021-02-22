@@ -47,21 +47,22 @@ export default function BarraDeBusca(props){
     const navigation = useNavigation()
 
     //Verifica se o campo de busca é válido, se sim, leva o usuário para a tela de resultados
-    function validarEntrada() {
+    function validarEntrada(tela) {
         if (props.value == null){
             exibirToastErro();
         }else{
             if (props.value.trim() == null || props.value.trim() === "") {
                 exibirToastErro()
             }else{
-                handleNavigateToSearch()
+                handleNavigateToSearch(tela)
             }
         }
     }
 
     //Faz a navegação para a tela  de glossário porém passando a busca e o nome
-    function handleNavigateToSearch(){
-        navigation.navigate("Glossário", {screen: "Glossário", busca: props.value, tipoDeBusca: "Pesquisa"})
+    function handleNavigateToSearch(tela){
+        navigation.navigate(tela , {busca: props.value})
+        //navigation.navigate("Glossário", {screen: "Glossário", busca: props.value, tipoDeBusca: "Pesquisa"})
     }
 
     //Exibe uma mensagem de erro referente a pesquisa
@@ -79,7 +80,7 @@ export default function BarraDeBusca(props){
                 style={styles.textInput}
                 onChangeText={props.onChangeText}
                 onSubmitEditing={() =>
-                    validarEntrada()}
+                    validarEntrada(props.navegacao)}
                 returnKeyType={"search"}
                 placeholder="Digite o termo a ser buscado"
                 value={props.value}
@@ -87,7 +88,7 @@ export default function BarraDeBusca(props){
             <TouchableOpacity
                 style={styles.button}
                 onPress={() =>
-                    validarEntrada()}>
+                    validarEntrada(props.navegacao)}>
                 <Icon
                     name="search"
                     color="#4f40b5"
