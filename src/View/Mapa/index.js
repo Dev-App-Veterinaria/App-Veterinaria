@@ -45,11 +45,11 @@ export default function (){
     }
 
     let telaDeCarregamento = (
-            <View style={{flex:1,  width:"100%", 
-                        height: "100%", 
-                        flexDirection:"column", 
-                        position: "absolute", 
-                        top: 0, 
+            <View style={{flex:1,  width:"100%",
+                        height: "100%",
+                        flexDirection:"column",
+                        position: "absolute",
+                        top: 0,
                         backgroundColor: "#4f40b5"}}>
                 <ActivityIndicator style={{flex: 1}} size="large" color="#fff" />
             </View>
@@ -159,7 +159,9 @@ export default function (){
                     value={textoBusca}
                     navegacao="Pesquisa"
                     style={{position: "absolute", top: 0}}/>
-                <TouchableOpacity style={styles.btn}>
+                <TouchableOpacity
+                    style={styles.btn}
+                    onPress={() => navigation.navigate("TelaDeInformações")}>
                     <Icon
                         name="information"
                         size={styles.tamanhoBtn}
