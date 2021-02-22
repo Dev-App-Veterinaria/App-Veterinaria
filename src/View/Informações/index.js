@@ -6,7 +6,7 @@ import styles from "./styles";
 //Tela contendo as informações de uma doença
 export default function (props) {
   const info = props.route.params;
-
+  let separaArray = (tags) => tags.join(", ");
   const I = (props) => <Text style={{fontStyle: 'italic'}}>{props.children}</Text>
 
   return (
@@ -46,7 +46,7 @@ export default function (props) {
         </View>
         <View style={styles.itemContainer}>
             <Text style={styles.txtTitulo}>Estados</Text>
-            <Text style={styles.txt}>{info.states}</Text>
+            <Text style={styles.txt}>{separaArray(info.states)}</Text>
         </View>
     </ScrollView>
   );

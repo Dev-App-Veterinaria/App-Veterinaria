@@ -45,8 +45,10 @@ export default function Glossario({route}, props){
 
     React.useEffect(()=>{
         try{
-            if(route.params.busca !== undefined){
-                setTextoBarra(route.params.busca);
+            if(route.params !== undefined){
+                if(route.params.busca !== undefined){
+                    setTextoBarra(route.params.busca);
+                }
             }
         }catch(e){
             console.log(e);
@@ -110,7 +112,7 @@ export default function Glossario({route}, props){
             renderItem={({item}) => itemListModel(item)}/>
         )
     }else{
-        exibirBusca = <TelaDeErro mensagem={"Nenhum resultado, \nVerifique sua busca"} />
+        exibirBusca = <TelaDeErro mensagem={"Nenhum resultado encontrado! \nVerifique a sua busca."} />
     }
 
     if (erro) {
