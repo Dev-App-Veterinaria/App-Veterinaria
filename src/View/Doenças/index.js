@@ -1,16 +1,18 @@
 import React, {useState, useEffect} from 'react'
 import { View, Text, FlatList, TouchableOpacity, ActivityIndicator } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import {buscarDoencasPorEstado} from '../../Controllers/controladorDoenças';
 import TelaDeErro from '../../Components/Visuais/telaDeErro';
+import Artigos from "../../Components/Visuais/artigos";
+import Doencas from "../../Components/Visuais/doencas"
 import styles from './styles'
+import normalizador from "../../Controllers/normalizador"
 
 // Tela das doenças de cada estado
 export default function(props){
     const [carregando, setCarregando] =  useState(true);
     const [erro, setErro] = useState(null);
     const [doencas, setDoencas] = useState([]);
-    const navigation = useNavigation()
+    const [artigos, setArtigos] = useState(false)
 
     //Função que faz a solicitação das doenças novamente no servidor
     function inicializarDoencas(){
@@ -29,19 +31,6 @@ export default function(props){
     useEffect(()=>{
         inicializarDoencas()
     }, []);
-
-    //RenderItem da flatList
-    function renderItem(props){
-        return(
-            <TouchableOpacity
-                style={styles.containerRenderItem}
-                onPress={() => {navigation.navigate("Informações", props)}}>
-
-                <Text style={styles.txtTitulo}>{props.scientificName}</Text>
-                <Text style={styles.txtDescricao}>{props.etiologicalAgent}</Text>
-            </TouchableOpacity>
-        )
-    }
 
     if(carregando){
         return <ActivityIndicator style={{flex: 1}} size="large" color="#4f40b5" />
@@ -69,12 +58,16 @@ export default function(props){
 
     return(
         <View style={styles.container}>
-            <FlatList
-                columnWrapperStyle={styles.flatList}
-                data={doencas}
-                keyExtractor={item => item._id}
-                renderItem={({item}) => renderItem(item)}
-                numColumns={2}/>
+            <View style={styles.containerBtn}>
+                <TouchableOpacity onPress={() => setArtigos(false)}>
+                    <Text style={{...styles.btn, color: artigos ? "#dbdbdb" : "#4f40b5"}}>Doenças</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => setArtigos(true)}>
+                    <Text style={{...styles.btn, color: artigos ? "#4f40b5" : "#dbdbdb"}}>Artigos</Text>
+                </TouchableOpacity>
+            </View>
+                {artigos && <Artigos/>}
+                {!artigos && <Doencas props={doencas}/>}
         </View>
     )
 }

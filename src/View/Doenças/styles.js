@@ -5,27 +5,13 @@ export default StyleSheet.create({
     container: {
         flex: 1,
     },
-    containerRenderItem: {
-        backgroundColor: "#4f40b5",
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '3%',
-        marginTop: '4%',
-        borderRadius: 10,
-        width: normalizador.widthPercentageToDP('40%'),
-        height: normalizador.widthPercentageToDP('35%')
+    btn:{
+        fontSize: normalizador.widthPercentageToDP("7%"),
     },
-    flatList: {
-        justifyContent: "space-around"
+    containerBtn: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        width: "70%",
+        alignSelf: "center"
     },
-    txtTitulo: {
-        fontSize: normalizador.widthPercentageToDP('4%'),
-        color: 'white',
-        fontWeight: 'bold'
-    },
-    txtDescricao: {
-        marginTop: '2%',
-        color: 'white',
-        textAlign: 'center'
-    }
 })
