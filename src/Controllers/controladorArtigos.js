@@ -1,6 +1,6 @@
-const server = "http://10.147.208.7:3001/api/disease/"
+const server = "http://10.147.208.7:3001/api/article/"
 
-async function listarDoencas() {
+async function listarArtigos() {
     return fetch(server)
         .then(response => {
             // valida se a requisição falhou
@@ -18,8 +18,8 @@ async function listarDoencas() {
         })
 }
 
-async function buscarDoencasPorEstado(estado) {
-    const requisicao = `?states=${estado}`;
+async function buscarArtigosPorEstado(estado) {
+    const requisicao = `?state=${estado}`;
     return fetch(server + requisicao)
         .then(response => {
             // valida se a requisição falhou
@@ -37,4 +37,5 @@ async function buscarDoencasPorEstado(estado) {
         })
 }
 
-export {buscarDoencasPorEstado, listarDoencas};
+export {buscarArtigosPorEstado, listarArtigos};
+
