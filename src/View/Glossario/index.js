@@ -12,7 +12,7 @@ import BarraDeBusca from '../../Components/Visuais/barraDeBusca';
 import TelaDeErro from '../../Components/Visuais/telaDeErro';
 import styles from "./styles";
 
-export default function Glossario({route}, props){
+export default function Glossario(){
     const [encontradas, setEncontradas] = React.useState(null);
     const [textoBarra, setTextoBarra] = React.useState('');
     const [doencas, setDoencas] = React.useState([]);
@@ -41,7 +41,7 @@ export default function Glossario({route}, props){
     React.useEffect(()=>{
         inicializarDoencas()
     }, []);
-    
+
     //É responsável por atualizar as doenças com base na pesquisa dada pela barra de busca
     function autoComplete(busca){
         if(busca !== undefined){
@@ -69,10 +69,11 @@ export default function Glossario({route}, props){
 
     //RenderItem da flatList
     function itemListModel(props){
+        ///// DEFINIR UM CRITÉRIO DE BUSCA PARA ARTIGOS //////
         return(
             <TouchableOpacity
                 style={styles.listitem}
-                onPress={() => {navigation.navigate("Informações", props)}}>
+                onPress={() => {navigation.navigate("Informações", {info: props, artigos: []})}}>
                 <View style={styles.containerImagem}>
                 <Image
                     style={styles.imagem}
@@ -102,7 +103,7 @@ export default function Glossario({route}, props){
         exibirBusca = <TelaDeErro mensagem={"Nenhum resultado encontrado! \nVerifique a sua busca."} />
     }
 
-    if (erro) {
+    if(erro){
         return (
             <TelaDeErro
                 //A tela de erro recebe um erro ou true para saber q está lidando com um problema

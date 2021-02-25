@@ -12,7 +12,7 @@ import BarraDeBusca from '../../Components/Visuais/barraDeBusca';
 import TelaDeErro from '../../Components/Visuais/telaDeErro';
 import styles from "./styles";
 
-export default function BuscarDoencas({route}, props){
+export default function BuscarDoencas({route}){
     const [encontradas, setEncontradas] = React.useState(null);
     const [textoBarra, setTextoBarra] = React.useState('');
     const [doencas, setDoencas] = React.useState([]);
@@ -77,10 +77,11 @@ export default function BuscarDoencas({route}, props){
 
     //RenderItem da flatList
     function itemListModel(props){
+        /// DEFINIR UM CRITÉRIO DE BUSCA DOS ARTIGOS //////
         return(
             <TouchableOpacity
                 style={styles.listitem}
-                onPress={() => {navigation.navigate("Informações", props)}}>
+                onPress={() => {navigation.navigate("Informações", {info: props, artigos: []})}}>
                 <View style={styles.containerImagem}>
                 <Image
                     style={styles.imagem}
