@@ -4,6 +4,7 @@ import normalizador from "../../Controllers/normalizador";
 export default StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: "#FFFFFF"
     },
     btn: {
         fontWeight: "bold",
@@ -13,6 +14,7 @@ export default StyleSheet.create({
         width: "100%",
         flexDirection: "row",
         justifyContent: "space-evenly",
-        alignSelf: "center"
+        alignSelf: "center",
+        backgroundColor: "#FFFFFF"
     },
 })

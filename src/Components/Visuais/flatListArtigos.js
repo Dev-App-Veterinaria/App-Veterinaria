@@ -4,8 +4,7 @@ import styles from "../../View/Glossario/styles"
 import TelaDeErro from "./telaDeErro";
 
 
-export default function artigos(dados) {
-    console.log(dados)
+export default function flatListArtigos(dados) {
     if (dados.info.length < 1) {
         return <TelaDeErro mensagem={"Nenhum resultado encontrado!"}/>
     }

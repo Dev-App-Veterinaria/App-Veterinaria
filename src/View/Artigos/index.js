@@ -2,7 +2,7 @@ import React,{useEffect, useState} from "react"
 import {listarArtigos} from "../../Controllers/controladorArtigos";
 import {ActivityIndicator, View} from "react-native";
 import TelaDeErro from "../../Components/Visuais/telaDeErro";
-import Artigos from "../../Components/Visuais/artigos"
+import FlatListArtigos from "../../Components/Visuais/flatListArtigos"
 import BarraDeBusca from "../../Components/Visuais/barraDeBusca";
 
 export default function artigos(){
@@ -59,7 +59,7 @@ export default function artigos(){
                 value={""}
                 navegacao={""}
                 style={{position: "relative"}}/>
-            <Artigos info={artigos}/>
+            <FlatListArtigos info={artigos}/>
         </View>
 
     )
