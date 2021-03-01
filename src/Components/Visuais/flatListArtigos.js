@@ -48,8 +48,7 @@ const styles = StyleSheet.create({
     }
 })
 
-
-export default function Artigos(dados) {
+export default function flatListArtigos(dados) {
     if (dados.info.length < 1) {
         return <TelaDeErro mensagem={"Nenhum resultado encontrado!"}/>
     }

@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {View, Text, TouchableOpacity} from "react-native";
 import styles from "./styles";
-import Artigos from "../../Components/Visuais/artigos";
+import FlatListArtigos from "../../Components/Visuais/flatListArtigos";
 import Informacoes from "../../Components/Visuais/informacoes";
 
 //Tela contendo as informações de uma doença
@@ -20,7 +20,7 @@ export default function (props) {
                     <Text style={{...styles.btn, color: artigos ? "#4f40b5" : "#dbdbdb"}}>Artigos</Text>
                 </TouchableOpacity>
             </View>
-            {artigos && <Artigos info={dadosArtigos}/>}
+            {artigos && <FlatListArtigos info={dadosArtigos}/>}
             {!artigos && <Informacoes info={info}/>}
         </View>
     );
