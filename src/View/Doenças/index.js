@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import {View, Text, FlatList, TouchableOpacity, ActivityIndicator} from 'react-native';
 import {buscarDoencasPorEstado} from '../../Controllers/controladorDoenças';
-import {buscarArtigosPorEstado} from "../../Controllers/controladorArtigos";
 import TelaDeErro from '../../Components/Visuais/telaDeErro';
 import styles from './styles'
 import {useNavigation} from "@react-navigation/native";
@@ -11,13 +10,11 @@ export default function (props) {
     const [carregando, setCarregando] = useState(true);
     const [erro, setErro] = useState(null);
     const [doencas, setDoencas] = useState([]);
-    const [artigos, setArtigos] = useState([]);
     const navigation = useNavigation()
 
     function inicializarDados(){
         try{
             inicializarDoencas();
-            inicializarArtigos();
         }catch (e){
             setCarregando(false)
         }
@@ -29,6 +26,7 @@ export default function (props) {
         buscarDoencasPorEstado(estado)
             .then(itens => {
                 setDoencas(itens);
+                setCarregando(false);
             })
             .catch(erro => {
                 setErro(erro);
@@ -36,19 +34,6 @@ export default function (props) {
             })
     }
 
-    //Função que faz a solicitação dos artigos novamente no servidor
-    function inicializarArtigos(){
-        const estado = props.route.params;
-        buscarArtigosPorEstado(estado)
-            .then(itens => {
-                setArtigos(itens);
-                setCarregando(false)
-            })
-            .catch(erro => {
-                setErro(erro);
-                throw new Error("Solicitação falhou")
-            })
-    }
 
     useEffect(() => {
         inicializarDados()
@@ -78,18 +63,19 @@ export default function (props) {
         return <TelaDeErro mensagem={"Nenhum resultado encontrado! \nVerifique a sua busca."}/>
     }
 
+    function navegar(doenca){
+        navigation.navigate("Informações", {info: doenca, estado: props.route.params })
+    }
+
     //RenderItem da flatList
     function renderItem(props){
         //Faz a filtragem dos artigos da doença selecionada
-        let artigosSelecionados = artigos.filter(obj => {
-            return obj.disease === props.scientificName
-        })
 
         return (
             <TouchableOpacity
                 style={styles.containerRenderItem}
                 onPress={() => {
-                    navigation.navigate("Informações", {info: props, artigos: artigosSelecionados})
+                    navegar(props);
                 }}>
 
                 <Text style={styles.txtTitulo}>{props.scientificName}</Text>
