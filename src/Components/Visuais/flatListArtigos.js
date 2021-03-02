@@ -48,14 +48,25 @@ const styles = StyleSheet.create({
     }
 })
 
+function compare(a, b){
+    if ( a.name < b.name ){
+      return -1;
+    }
+    if ( a.name > b.name ){
+      return 1;
+    }
+    return 0;
+  }
+
 export default function flatListArtigos(dados) {
     if (dados.info.length < 1) {
         return <TelaDeErro mensagem={"Nenhum resultado encontrado!"}/>
     }
 
+    const artigosOrdenados = dados.info.sort(compare);
+
     //RenderItem da flatList
     function itemListModel(props) {
-        console.log(props)
         return (
             <TouchableOpacity
                 style={styles.listitem}
@@ -76,7 +87,7 @@ export default function flatListArtigos(dados) {
     return (
         <View style={styles.container}>
             <FlatList contentContainerStyle={styles.flatList}
-                      data={dados.info}
+                      data={artigosOrdenados}
                       keyExtractor={item => item._id}
                       renderItem={({item}) => itemListModel(item)}/>
         </View>
