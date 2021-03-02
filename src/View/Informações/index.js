@@ -1,27 +1,67 @@
-import React, {useState} from "react";
-import {View, Text, TouchableOpacity} from "react-native";
+import React, {useState, useEffect} from "react";
+import {View, Text, TouchableOpacity, ActivityIndicator} from "react-native";
 import styles from "./styles";
 import FlatListArtigos from "../../Components/Visuais/flatListArtigos";
 import Informacoes from "../../Components/Visuais/informacoes";
+import {buscarArtigos} from "../../Controllers/controladorArtigos";
 
 //Tela contendo as informações de uma doença
 export default function (props) {
-    const [artigos, setArtigos] = useState(false);
-    const info = props.route.params.info;
-    const dadosArtigos = props.route.params.artigos;
+    const [botaoArtigos, setBotaoArtigos] = useState(false);
+    const [erro, setErro] = React.useState(null);
+    const [carregando, setCarregando] = React.useState(true);
+    const [artigos, setArtigos] = React.useState([]);
+    const doenca = props.route.params.info;
+    const estado = props.route.params.estado;
+
+    function carregarArtigos(){
+        buscarArtigos(doenca.scientificName, estado)
+            .then(itens=>{
+                setArtigos(itens);
+                setCarregando(false);
+            }
+            ).catch(erro => {
+                setErro(erro);
+                setCarregando(false);
+            })
+    }
+    
+    useEffect(() => {
+        carregarArtigos();
+    });
+
+    if(carregando){
+        return <ActivityIndicator style={{flex: 1}} size="large" color="#4f40b5"/>
+    }
+
+    if(erro){
+        return (
+            <TelaDeErro
+                //A tela de erro recebe um erro ou true para saber q está lidando com um problema
+                // Passando, false ou ignorando o parametro fará com q n seja exibido um botão para chamar a função.
+                erro={erro}
+                mensagem="Erro!\n Verifique sua conexão com a internet e tente novamente."
+                mensagemBotao="Tentar novamente"
+                botao={() => {
+                    setCarregando(true);
+                    setErro(null);
+                    carregarArtigos();
+                }}/>
+        )
+    }
 
     return (
         <View style={styles.container}>
             <View style={styles.containerBtn}>
-                <TouchableOpacity onPress={() => setArtigos(false)}>
-                    <Text style={{...styles.btn, color: artigos ? "#dbdbdb" : "#4f40b5"}}>Doença</Text>
+                <TouchableOpacity onPress={() => setBotaoArtigos(false)}>
+                    <Text style={{...styles.btn, color: botaoArtigos ? "#dbdbdb" : "#4f40b5"}}>Doença</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => setArtigos(true)}>
-                    <Text style={{...styles.btn, color: artigos ? "#4f40b5" : "#dbdbdb"}}>Artigos</Text>
+                <TouchableOpacity onPress={() => setBotaoArtigos(true)}>
+                    <Text style={{...styles.btn, color: botaoArtigos ? "#4f40b5" : "#dbdbdb"}}>Artigos</Text>
                 </TouchableOpacity>
             </View>
-            {artigos && <FlatListArtigos info={dadosArtigos}/>}
-            {!artigos && <Informacoes info={info}/>}
+            {botaoArtigos && <FlatListArtigos info={artigos}/>}
+            {!botaoArtigos && <Informacoes info={doenca}/> }
         </View>
     );
 }
