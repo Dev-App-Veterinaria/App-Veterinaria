@@ -5,6 +5,7 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: "#fff",
         alignItems: "center",
         justifyContent: "center"
 
@@ -21,8 +22,10 @@ const styles = StyleSheet.create({
     imagem: {
         flex: 1,
         flexBasis: 150,
-        maxWidth: 200,
-        maxHeight: 200,
+        maxWidth: 150,
+        maxHeight: 150,
+        marginBottom: 10,
+        tintColor: "#4f40b5",
         flexWrap: "wrap",
     },
     botao: {
@@ -58,7 +61,7 @@ export default function TelaDeErro(props) {
             <View style={styles.container}>
                 <Image
                     style={styles.imagem}
-                    source={require("../../../assets/icon.png")} />
+                    source={require("../../../assets/ErroParasitour.png")} />
                 <Text style={styles.texto}>
                     {props.mensagem}
                 </Text>
@@ -82,7 +85,7 @@ export default function TelaDeErro(props) {
         <View style={styles.container}>
             <Image
                 style={styles.imagem}
-                source={require("../../../assets/icon.png")} />
+                source={require("../../../assets/ErroParasitour.png")} />
             <Text style={styles.texto}>
                 {props.mensagem}
             </Text>
