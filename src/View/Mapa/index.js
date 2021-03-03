@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import React, { createRef , useState} from 'react';
+import React, { createRef , useState, useEffect} from 'react';
 import { View,TouchableOpacity, Dimensions, ActivityIndicator } from 'react-native';
 import MapView, { Polygon } from 'react-native-maps';
 import { useNavigation } from '@react-navigation/native';
@@ -8,19 +8,37 @@ import BarraDeBusca from '../../Components/Visuais/barraDeBusca';
 import styles from './styles';
 import poligonos from '../../Components/Dados/poligonos';
 import mapStyle from './mapStyle.json';
+import {useArtigos} from "../../Context/contextArtigos";
+import {listarArtigos} from "../../Controllers/controladorArtigos";
 
 //Componente inicial do App
 export default function (){
     const navigation = useNavigation()
+    const {setArtigos} = useArtigos()
     const mapView = createRef()
-    const [textoBusca, setTextoBusca] = useState('');
-    const [carregando, setCarregando] = useState(true);
+    const [carregando, setCarregando] = useState(true)
 
     //Função usada para limitar a área de scroll do usuário, é chamada depois que o mapa é carregado
     const setMapBoundaries = () => {
         mapView.current.setMapBoundaries({latitude: 5.245219, longitude: -32.212305}, {latitude: -31.708548, longitude: -73.958163})
-        setCarregando(false);
+        setCarregando(false)
     }
+
+    useEffect(() => {
+        listarArtigos()
+            .then(response => {
+                if(response.length === 0){
+                    setArtigos({artigos: [], erro: new Error("Nenhum resultado encontrado.")})
+                }else{
+                    setArtigos({artigos: response})
+                }
+            })
+            .catch(e => {
+                e.message = "Erro! Verifique sua conexão com a internet."
+                setArtigos({artigos: [], erro: e})
+            })
+    }, [])
+
 
     //Função usada para determinar o nível de zoom do mapa com base na largura da tela
     function getMinZoomLevel() {
@@ -44,22 +62,6 @@ export default function (){
                 onPress={() => {navigation.navigate("Doenças", props.nome)}}/>
     }
 
-    let telaDeCarregamento = (
-            <View style={{flex:1,  width:"100%",
-                        height: "100%",
-                        flexDirection:"column",
-                        position: "absolute",
-                        top: 0,
-                        backgroundColor: "#4f40b5"}}>
-                <ActivityIndicator style={{flex: 1}} size="large" color="#fff" />
-            </View>
-            )
-    let espera;
-    if(carregando){
-        espera = telaDeCarregamento;
-    }else{
-        espera = <></>
-    }
     return(
         <View style={styles.container}>
             <StatusBar style="light" />
@@ -153,10 +155,14 @@ export default function (){
                         coordinates={poligonos.TOCANTINS}
                         nome="Tocantins"/>
                 </MapView>
-                {espera}
+                {carregando ?
+                    <View style={styles.telaErro}>
+                        <ActivityIndicator style={{flex: 1}} size="large" color="#fff" />
+                    </View>
+                    :
+                    <></>
+                }
                 <BarraDeBusca
-                    onChangeText={(texto) => {setTextoBusca(texto)}}
-                    value={textoBusca}
                     navegacao="Pesquisa"
                     style={{position: "absolute", top: 0}}/>
                 <TouchableOpacity
