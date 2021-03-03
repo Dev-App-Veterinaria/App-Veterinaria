@@ -40,7 +40,7 @@ export default function BottomTabNavigator() {
             }}
         />
         <BottomTab.Screen
-            name="Glossário"
+            name="Doenças"
             component={TabGlossarioNavigator}
             options={{
                 tabBarIcon: ({focused, color})=>

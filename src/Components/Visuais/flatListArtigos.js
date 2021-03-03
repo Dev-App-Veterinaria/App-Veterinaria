@@ -2,6 +2,7 @@ import React from "react"
 import {FlatList, Image, Text, TouchableOpacity, View} from "react-native"
 import TelaDeErro from "./telaDeErro";
 import {StyleSheet} from 'react-native';
+import {useNavigation} from "@react-navigation/native";
 
 const styles = StyleSheet.create({
     listitem: {
@@ -59,6 +60,7 @@ function compare(a, b){
   }
 
 export default function flatListArtigos(dados) {
+    const navigation = useNavigation();
     if (dados.info.length < 1) {
         return <TelaDeErro mensagem={"Nenhum resultado encontrado!"}/>
     }
@@ -70,7 +72,7 @@ export default function flatListArtigos(dados) {
         return (
             <TouchableOpacity
                 style={styles.listitem}
-                onPress={() => {}}>
+                onPress={ () => {navigation.navigate("InformacoesArtigos", {artigo: props})}}>
                 <View style={styles.containerImagem}>
                     <Text style={{alignSelf: "center", color: "#fff", fontSize: 18}}>
                         {props.name.charAt(0)}

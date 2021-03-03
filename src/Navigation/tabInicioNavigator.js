@@ -5,6 +5,7 @@ import BuscarDoencas from '../View/BuscarDoencas';
 import Doencas from '../View/Doenças';
 import Informacoes from '../View/Informações';
 import TelaDeInformacoes from "../View/TelaDeInformações";
+import InformacoesArtigos from "../View/InformaçõesArtigos";
 import styles from './styles';
 
 export default function TabInicioNavigator() {
@@ -33,6 +34,11 @@ export default function TabInicioNavigator() {
                 name={"TelaDeInformações"}
                 component={TelaDeInformacoes}
                 options={() => ({title: "Informações"})}/>
+            <Screen
+                name="InformacoesArtigos"
+                component={InformacoesArtigos}
+                options={{ title: 'Artigo' }}
+            />
         </Navigator>
     )
 }

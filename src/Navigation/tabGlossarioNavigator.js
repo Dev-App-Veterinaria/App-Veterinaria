@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Glossario from '../View/Glossario';
 import Informacoes from '../View/Informações';
 import styles from './styles';
+import InformacoesArtigos from "../View/InformaçõesArtigos";
 
 
 export default function TabGlossarioNavigator(){
@@ -21,6 +22,11 @@ export default function TabGlossarioNavigator(){
                   name="Informações"
                   component={Informacoes}
                   options={({ route }) => ({ title: route.params.scientificName})}/>
+            <Screen
+                name="InformacoesArtigos"
+                component={InformacoesArtigos}
+                options={{ title: 'Artigo' }}
+            />
         </Navigator>
     )
 }
