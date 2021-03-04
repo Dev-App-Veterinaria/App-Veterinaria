@@ -30,12 +30,12 @@ async function buscarArtigosPorDoenca(doenca){
         .then(response => {
             // valida se a requisição falhou
             if (!response.ok) {
-                return new Error('Falhou a requisição.') // cairá no catch da promise
+                throw new Error('Falhou a requisição.') // cairá no catch da promise
             }
 
             // verificando pelo status
             if (response.status === 404) {
-                return new Error('Não encontrou qualquer resultado.')
+                throw new Error('Não encontrou qualquer resultado.')
             }
 
             // retorna uma promise com os dados em JSON
@@ -49,12 +49,12 @@ async function buscarPorEstadoEDoenca(doenca, estado){
         .then(response => {
             // valida se a requisição falhou
             if (!response.ok) {
-                return new Error('Falhou a requisição.') // cairá no catch da promise
+                throw new Error('Falhou a requisição.') // cairá no catch da promise
             }
 
             // verificando pelo status
             if (response.status === 404) {
-                return new Error('Não encontrou qualquer resultado.')
+                throw new Error('Não encontrou qualquer resultado.')
             }
 
             // retorna uma promise com os dados em JSON

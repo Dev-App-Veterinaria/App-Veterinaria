@@ -38,6 +38,11 @@ export default function TabInicioNavigator() {
                         name={"TelaDeInformações"}
                         component={TelaDeInformacoes}
                         options={() => ({title: "Informações"})}/>
+                    <Screen
+                        name="InformacoesArtigos"
+                        component={InformacoesArtigos}
+                        options={{ title: 'Artigo' }}
+                    />
                 </Navigator>
             </BuscaProvider>
         </DadosProvider>

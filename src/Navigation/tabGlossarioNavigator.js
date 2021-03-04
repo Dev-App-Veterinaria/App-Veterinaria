@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import Glossario from '../View/Glossario';
+import InformacoesArtigos from '../View/InformaçõesArtigos';
 import styles from './styles';
 import BuscaProvider from "../Context/contextBusca";
 import DadosProvider from "../Context/contextDoencas";
@@ -24,6 +25,11 @@ export default function TabGlossarioNavigator(){
                     <Screen
                         name="Informações"
                         component={TopTabNavigator}/>
+                    <Screen
+                        name="InformacoesArtigos"
+                        component={InformacoesArtigos}
+                        options={{ title: 'Artigo' }}
+                    />
                 </Navigator>
             </BuscaProvider>
         </DadosProvider>

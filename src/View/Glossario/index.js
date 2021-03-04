@@ -47,8 +47,8 @@ export default function Glossario() {
     function inicializarDoencas() {
         listarDoencas()
             .then(itens => {
-                    setDoencas({doencas: itens});
-                    setCarregando(false)
+                setDoencas({doencas: itens});
+                setCarregando(false)
                 }
             )
             .catch(erro => {
@@ -83,19 +83,6 @@ export default function Glossario() {
         return <ActivityIndicator style={{flex: 1}} size="large" color="#4f40b5"/>
     }
 
-    let exibirBusca
-
-    if(encontradas.length > 0){
-        exibirBusca = (
-            <FlatList
-                contentContainerStyle={styles.flatList}
-                data={encontradas}
-                keyExtractor={item => item._id}
-                renderItem={({item}) => itemListModel(item)}/>
-                )
-    }else{
-        return <TelaDeErro mensagem={"Nenhum resultado encontrado! \nVerifique a sua busca."}/>
-    }
     //A tela de erro recebe um erro ou true para saber q está lidando com um problema
     // Passando, false ou ignorando o parametro fará com q n seja exibido um botão para chamar a função.
     if(erro){
@@ -109,6 +96,21 @@ export default function Glossario() {
                         inicializarDoencas()
                 }}/>
     }
+
+    let exibirBusca
+
+    if(encontradas.length > 0){
+        exibirBusca = (
+            <FlatList
+                contentContainerStyle={styles.flatList}
+                data={encontradas}
+                keyExtractor={item => item._id}
+                renderItem={({item}) => itemListModel(item)}/>
+                )
+    }else{
+        return <TelaDeErro mensagem={"Nenhum resultado encontrado! \nVerifique a sua busca."}/>
+    }
+
 
     return (
         <View style={styles.container}>

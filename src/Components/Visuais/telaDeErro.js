@@ -8,7 +8,6 @@ const styles = StyleSheet.create({
         backgroundColor: "#fff",
         alignItems: "center",
         justifyContent: "center"
-
     },
     texto: {
         color: "#4e4e4e",
@@ -17,7 +16,6 @@ const styles = StyleSheet.create({
         marginHorizontal: 14,
         marginTop: 10,
         marginBottom: 12
-
     },
     imagem: {
         flex: 1,
@@ -45,13 +43,8 @@ const styles = StyleSheet.create({
         color: "#fff",
         width: 150,
         textAlign: "center"
-
-
     }
-
 });
-
-
 
 export default function TelaDeErro(props) {
 
@@ -72,13 +65,10 @@ export default function TelaDeErro(props) {
                     <Text style={styles.textoBotao}>
                         {props.mensagemBotao}
                     </Text>
-
                 </TouchableOpacity>
             </View>
-
         )
     }
-
 
     //Tela para buscas não encontradas
     return (
