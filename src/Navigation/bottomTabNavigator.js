@@ -4,14 +4,11 @@ import TabInicioNavigator from './tabInicioNavigator';
 import TabGlossarioNavigator from './tabGlossarioNavigator';
 import TabArtigosNavigator from "./tabArtigosNavigator"
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-import Artigos from "../View/Artigos"
-
 
 function BottomTabIcon(props){
     let iconName = props.focused ? props.focusedIcon : props.icon;
     return <Icon name={iconName} color={props.color} size={28} />
 }
-
 
 const BottomTab = createBottomTabNavigator();
 
@@ -60,8 +57,8 @@ export default function BottomTabNavigator() {
                     <BottomTabIcon
                         color={color}
                         focused={focused}
-                        icon="book-outline"
-                        focusedIcon="book"
+                        icon="ballot-outline"
+                        focusedIcon="ballot"
                     />
             }}
         />
