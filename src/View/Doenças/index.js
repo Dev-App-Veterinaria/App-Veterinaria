@@ -51,16 +51,12 @@ export default function ({route}) {
         return <ActivityIndicator style={{flex: 1}} size="large" color="#4f40b5"/>
     }
 
-    if (doencas.doencas.length < 1){
-        return <TelaDeErro mensagem={"Nenhum resultado encontrado! \nVerifique a sua busca."}/>
-    }
-
     if (erro){
         return <TelaDeErro
             //A tela de erro recebe um erro ou true para saber q está lidando com um problema
             // Passando, false ou ignorando o parametro fará com q n seja exibido um botão para chamar a função.
             erro={erro}
-            mensagem="Erro!\n Verifique sua conexão com a internet e tente novamente."
+            mensagem="Erro! Verifique sua conexão com a internet e tente novamente."
             mensagemBotao="Tentar novamente"
             botao={() => {
                 setCarregando(true);
@@ -68,7 +64,11 @@ export default function ({route}) {
                 inicializarDoencas();
             }}/>
     }
-
+    
+    if (doencas.doencas.length < 1){
+        console.log(erro);
+        return <TelaDeErro mensagem={"Nenhum resultado encontrado! Verifique a sua busca."}/>
+    }
 
     return (
         <View style={styles.container}>

@@ -5,12 +5,14 @@ import TelaDeErro from "./telaDeErro";
 import {useDoencas} from "../../Context/contextDoencas";
 import {useArtigos} from "../../Context/contextArtigos";
 import {listarArtigos} from "../../Controllers/controladorArtigos";
+import {useNavigation} from "@react-navigation/native";
 
 export default function FlatListArtigos({tela}) {
     const {doencas} = useDoencas()
     const {artigos, setArtigos} = useArtigos()
     const [artigosSelecionados, setArtigosSelecionados] = useState([])
     const [carregando, setCarregando] = useState(false)
+    const navigation = useNavigation()
 
     useEffect(() => {
         filtrarArtigos()
@@ -37,7 +39,7 @@ export default function FlatListArtigos({tela}) {
         listarArtigos()
             .then(response => {
                 if(response.length === 0){
-                    setArtigos({artigos: [], erro: new Error("Nenhum resultado encontrado.")})
+                    setArtigos({artigos: []})
                 }else{
                     setArtigos({artigos: response})
                 }
@@ -78,7 +80,6 @@ export default function FlatListArtigos({tela}) {
 
     if(!tela && (artigosSelecionados.length < 1 || artigos.artigos.length < 1)){
         return <TelaDeErro
-            erro={new Error("Nenhum resultado encontrado!")}
             mensagem={"Nenhum resultado encontrado!"}
             mensagemBotao="Tentar novamente"
             botao={() => {
@@ -92,7 +93,7 @@ export default function FlatListArtigos({tela}) {
         return (
             <TouchableOpacity
                 style={styles.listitem}
-                onPress={() => {}}>
+                onPress={ () => {navigation.navigate("InformacoesArtigos", {artigo: props})} }>
                 <View style={styles.containerImagem}>
                     <Text style={{alignSelf: "center", color: "#fff", fontSize: 18}}>
                         {props.name.charAt(0)}
@@ -100,7 +101,7 @@ export default function FlatListArtigos({tela}) {
                 </View>
                 <View style={styles.listitemContainerDescricao}>
                     <Text style={styles.txtTitulo}>{props.name}</Text>
-                    <Text style={styles.txtDescricao} numberOfLines={2}>{props.content}</Text>
+                    <Text style={styles.txtDescricao}>{props.doi}</Text>
                 </View>
             </TouchableOpacity>
         )

@@ -3,6 +3,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import Mapa from '../View/Mapa';
 import Doencas from '../View/Doenças';
 import TelaDeInformacoes from "../View/TelaDeInformações";
+import InformacoesArtigos from "../View/InformaçõesArtigos";
 import TopTabNavigator from "./topTabNavigator";
 import BuscaProvider from "../Context/contextBusca";
 import DadosProvider from "../Context/contextDoencas";
@@ -37,6 +38,11 @@ export default function TabInicioNavigator() {
                         name={"TelaDeInformações"}
                         component={TelaDeInformacoes}
                         options={() => ({title: "Informações"})}/>
+                    <Screen
+                        name="InformacoesArtigos"
+                        component={InformacoesArtigos}
+                        options={{ title: 'Artigo' }}
+                    />
                 </Navigator>
             </BuscaProvider>
         </DadosProvider>

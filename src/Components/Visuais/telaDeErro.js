@@ -5,9 +5,9 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: "#fff",
         alignItems: "center",
         justifyContent: "center"
-
     },
     texto: {
         color: "#4e4e4e",
@@ -16,13 +16,14 @@ const styles = StyleSheet.create({
         marginHorizontal: 14,
         marginTop: 10,
         marginBottom: 12
-
     },
     imagem: {
         flex: 1,
         flexBasis: 150,
-        maxWidth: 200,
-        maxHeight: 200,
+        maxWidth: 150,
+        maxHeight: 150,
+        marginBottom: 10,
+        tintColor: "#4f40b5",
         flexWrap: "wrap",
     },
     botao: {
@@ -42,13 +43,8 @@ const styles = StyleSheet.create({
         color: "#fff",
         width: 150,
         textAlign: "center"
-
-
     }
-
 });
-
-
 
 export default function TelaDeErro(props) {
 
@@ -58,7 +54,7 @@ export default function TelaDeErro(props) {
             <View style={styles.container}>
                 <Image
                     style={styles.imagem}
-                    source={require("../../../assets/icon.png")} />
+                    source={require("../../../assets/ErroParasitour.png")} />
                 <Text style={styles.texto}>
                     {props.mensagem}
                 </Text>
@@ -69,20 +65,17 @@ export default function TelaDeErro(props) {
                     <Text style={styles.textoBotao}>
                         {props.mensagemBotao}
                     </Text>
-
                 </TouchableOpacity>
             </View>
-
         )
     }
-
 
     //Tela para buscas não encontradas
     return (
         <View style={styles.container}>
             <Image
                 style={styles.imagem}
-                source={require("../../../assets/icon.png")} />
+                source={require("../../../assets/ErroParasitour.png")} />
             <Text style={styles.texto}>
                 {props.mensagem}
             </Text>
