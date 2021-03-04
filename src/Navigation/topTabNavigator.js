@@ -1,14 +1,24 @@
-import React from "react"
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs'
-import Informacoes from "../Components/Visuais/informacoes"
-import FlatListArtigos from "../Components/Visuais/flatListArtigos"
+import React from "react";
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import Informacoes from "../Components/Visuais/informacoes";
+import FlatListArtigos from "../Components/Visuais/flatListArtigos";
+import styles from "./styles";
 
 export default function TopTabNavigator(){
     const {Navigator, Screen} = createMaterialTopTabNavigator()
     return(
-        <Navigator>
-            <Screen name="Dados" component={Informacoes}/>
-            <Screen name="Artigos" component={FlatListArtigos}/>
+        <Navigator
+            tabBarOptions={{
+                tabStyle: {backgroundColor: "#4f40b5"},
+                activeTintColor: "#fff",
+                inactiveTintColor: '#cccccc',
+                labelStyle: {
+                    textTransform: 'none',
+                    fontWeight: "bold"
+                }
+                }}>
+            <Screen name="Informações" component={Informacoes}/>
+            <Screen name="Referência de Artigos" component={FlatListArtigos}/>
         </Navigator>
     )
 }

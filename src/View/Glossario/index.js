@@ -67,9 +67,9 @@ export default function Glossario() {
                     navigation.navigate("Informações")
                 }}>
                 <View style={styles.containerImagem}>
-                    <Image
-                        style={styles.imagem}
-                        source={require('../../../assets/iconeDoencas.png')}/>
+                    <Text style={{alignSelf: "center", color: "#fff", fontSize: 18}}>
+                        {props.scientificName.charAt(0)}
+                    </Text>
                 </View>
                 <View style={styles.listitemContainerDescricao}>
                     <Text style={styles.txtTitulo}>{props.scientificName}</Text>

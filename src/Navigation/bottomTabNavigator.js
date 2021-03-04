@@ -44,8 +44,8 @@ export default function BottomTabNavigator() {
                     <BottomTabIcon
                         color={color}
                         focused={focused}
-                        icon="book-outline"
-                        focusedIcon="book"
+                        icon="clipboard-plus-outline"
+                        focusedIcon="clipboard-plus"
                     />
             }}
         />
@@ -57,8 +57,8 @@ export default function BottomTabNavigator() {
                     <BottomTabIcon
                         color={color}
                         focused={focused}
-                        icon="ballot-outline"
-                        focusedIcon="ballot"
+                        icon="book-outline"
+                        focusedIcon="book"
                     />
             }}
         />

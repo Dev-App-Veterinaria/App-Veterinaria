@@ -4,7 +4,8 @@ import normalizador from '../Controllers/normalizador';
 const styles = StyleSheet.create({
     headerStyle: {
         backgroundColor: "#4f40b5",
-        height: normalizador.widthPercentageToDP("20%")
+        height: normalizador.widthPercentageToDP("20%"),
+        elevation: 0
     },
     headerTitleStyle: {
         color: "white",

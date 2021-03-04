@@ -101,7 +101,7 @@ export default function FlatListArtigos({tela}) {
                 </View>
                 <View style={styles.listitemContainerDescricao}>
                     <Text style={styles.txtTitulo}>{props.name}</Text>
-                    <Text style={styles.txtDescricao} numberOfLines={2}>{props.content}</Text>
+                    <Text style={styles.txtDescricao}>{props.doi}</Text>
                 </View>
             </TouchableOpacity>
         )
