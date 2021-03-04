@@ -3,6 +3,7 @@ import { StyleSheet, TextInput, TouchableOpacity, View, ToastAndroid } from "rea
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import normalizador from '../../Controllers/normalizador';
+import BuscaProvider, {useBusca} from "../../Context/contextBusca";
 
 const styles = StyleSheet.create({
     container: {
@@ -44,14 +45,15 @@ const styles = StyleSheet.create({
 });
 
 export default function BarraDeBusca(props){
+    const {busca, setBusca} = useBusca()
     const navigation = useNavigation()
 
     //Verifica se o campo de busca é válido, se sim, leva o usuário para a tela de resultados
     function validarEntrada(tela) {
-        if (props.value == null){
+        if (busca == null){
             exibirToastErro();
         }else{
-            if (props.value.trim() == null || props.value.trim() === "") {
+            if (busca.trim() == null || busca.trim() === "") {
                 exibirToastErro()
             }else{
                 handleNavigateToSearch(tela)
@@ -59,10 +61,9 @@ export default function BarraDeBusca(props){
         }
     }
 
-    //Faz a navegação para a tela  de glossário porém passando a busca e o nome
+    //Faz a navegação para a tela de glossário passando a busca e o nome
     function handleNavigateToSearch(tela){
-        navigation.navigate(tela , {busca: props.value})
-        //navigation.navigate("Glossário", {screen: "Glossário", busca: props.value, tipoDeBusca: "Pesquisa"})
+        navigation.navigate(tela)
     }
 
     //Exibe uma mensagem de erro referente a pesquisa
@@ -75,26 +76,29 @@ export default function BarraDeBusca(props){
     }
 
     return (
-        <View style={{...styles.barraDeBusca, ...props.style, ...props}}>
-            <TextInput
-                style={styles.textInput}
-                onChangeText={props.onChangeText}
-                onSubmitEditing={() =>
-                    validarEntrada(props.navegacao)}
-                returnKeyType={"search"}
-                placeholder="Digite o termo a ser buscado"
-                value={props.value}
-            />
-            <TouchableOpacity
-                style={styles.button}
-                onPress={() =>
-                    validarEntrada(props.navegacao)}>
-                <Icon
-                    name="search"
-                    color="#4f40b5"
-                    size={normalizador.widthPercentageToDP("4%")}
-                    style={styles.icone}/>
-            </TouchableOpacity>
-        </View>
+        <BuscaProvider>
+            <View style={{...styles.barraDeBusca, ...props.style, ...props}}>
+                <TextInput
+                    style={styles.textInput}
+                    onChangeText={(a) => setBusca(a)}
+                    onSubmitEditing={() =>
+                        validarEntrada(props.navegacao)}
+                    returnKeyType={"search"}
+                    placeholder="Digite o termo a ser buscado"
+                    value={busca}
+                />
+                <TouchableOpacity
+                    style={styles.button}
+                    onPress={() =>
+                        validarEntrada(props.navegacao)}>
+                    <Icon
+                        name="search"
+                        color="#4f40b5"
+                        size={normalizador.widthPercentageToDP("4%")}
+                        style={styles.icone}/>
+                </TouchableOpacity>
+            </View>
+        </BuscaProvider>
+
     )
 }

@@ -1,69 +1,91 @@
-import React from "react"
-import {FlatList, Image, Text, TouchableOpacity, View} from "react-native"
+import React, {useEffect, useState} from "react"
+import {ActivityIndicator, FlatList, Text, TouchableOpacity, View} from "react-native"
+import styles from "../../View/Glossario/styles"
 import TelaDeErro from "./telaDeErro";
-import {StyleSheet} from 'react-native';
+import {useDoencas} from "../../Context/contextDoencas";
+import {useArtigos} from "../../Context/contextArtigos";
+import {listarArtigos} from "../../Controllers/controladorArtigos";
 
-const styles = StyleSheet.create({
-    listitem: {
-        backgroundColor: "#fff",
-        flexWrap: "wrap",
-        flexDirection: "row",
-        padding: 6,
-        marginHorizontal: 0,
-        marginVertical: 0
+export default function FlatListArtigos({tela}) {
+    const {doencas} = useDoencas()
+    const {artigos, setArtigos} = useArtigos()
+    const [artigosSelecionados, setArtigosSelecionados] = useState([])
+    const [carregando, setCarregando] = useState(false)
 
-    },
-    txtTitulo: {
-        fontSize: 16,
-        color: '#4f40b5',
-        fontWeight: 'bold'
-    },
-    txtDescricao: {
-        marginTop: 2,
-        color: '#000'
-    },
-    containerImagem: {
-        width: 60,
-        height: 60,
-        borderRadius: 30,
-        alignContent: "center",
-        justifyContent: "center",
-        backgroundColor: "#4f40b5",
-        flexWrap: "wrap",
-        marginTop: 10,
-        marginHorizontal: 16
-    }, 
-    listitemContainerDescricao: {
-        flex: 1,
-        flexGrow: 1,
-        alignItems: "flex-start",
-        justifyContent: "center",
-        marginVertical: 4,
-        borderRadius: 6,
-        paddingTop: 6,
-        paddingBottom: 12,
-        paddingEnd: 30,
-        borderBottomWidth: 0.03,
-        borderBottomColor: "#e4ddf3",
-    }
-})
+    useEffect(() => {
+        filtrarArtigos()
+    }, [])
 
-function compare(a, b){
-    if ( a.name < b.name ){
-      return -1;
-    }
-    if ( a.name > b.name ){
-      return 1;
-    }
-    return 0;
-  }
-
-export default function flatListArtigos(dados) {
-    if (dados.info.length < 1) {
-        return <TelaDeErro mensagem={"Nenhum resultado encontrado!"}/>
+    function filtrarArtigos() {
+        if (!tela) {
+            let artigosSelecionados
+            if (doencas.estado) {
+                artigosSelecionados = artigos.artigos.filter(obj => {
+                    return (obj.disease === doencas.info.scientificName && obj.state.includes(doencas.estado))
+                })
+            } else {
+                artigosSelecionados = artigos.artigos.filter(obj => {
+                    return (obj.disease === doencas.info.scientificName)
+                })
+            }
+            artigosSelecionados.sort(compare)
+            setArtigosSelecionados(artigosSelecionados)
+        }
     }
 
-    const artigosOrdenados = dados.info.sort(compare);
+    function inicializarArtigos(){
+        listarArtigos()
+            .then(response => {
+                if(response.length === 0){
+                    setArtigos({artigos: [], erro: new Error("Nenhum resultado encontrado.")})
+                }else{
+                    setArtigos({artigos: response})
+                }
+                setCarregando(false)
+            })
+            .catch(e => {
+                e.message = "Erro! Verifique sua conexão com a internet."
+                setArtigos({artigos: [], erro: e})
+                setCarregando(false)
+            })
+        filtrarArtigos()
+    }
+
+    function compare(a, b){
+        if ( a.name < b.name ){
+            return -1;
+        }
+        if ( a.name > b.name ){
+            return 1;
+        }
+        return 0;
+    }
+
+    if(carregando){
+        return <ActivityIndicator style={{flex: 1}} size="large" color="#4f40b5"/>
+    }
+
+    if (tela && artigos.erro) {
+        return <TelaDeErro
+            erro={artigos.erro}
+            mensagem={artigos.erro.message}
+            mensagemBotao="Tentar novamente"
+            botao={() => {
+                setCarregando(true)
+                inicializarArtigos()
+            }}/>
+    }
+
+    if(!tela && (artigosSelecionados.length < 1 || artigos.artigos.length < 1)){
+        return <TelaDeErro
+            erro={new Error("Nenhum resultado encontrado!")}
+            mensagem={"Nenhum resultado encontrado!"}
+            mensagemBotao="Tentar novamente"
+            botao={() => {
+                setCarregando(true)
+                inicializarArtigos()
+            }}/>
+    }
 
     //RenderItem da flatList
     function itemListModel(props) {
@@ -86,10 +108,11 @@ export default function flatListArtigos(dados) {
 
     return (
         <View style={styles.container}>
-            <FlatList contentContainerStyle={styles.flatList}
-                      data={artigosOrdenados}
-                      keyExtractor={item => item._id}
-                      renderItem={({item}) => itemListModel(item)}/>
+            <FlatList
+                contentContainerStyle={styles.flatList}
+                data={tela ? artigos.artigos : artigosSelecionados}
+                keyExtractor={item => item._id}
+                renderItem={({item}) => itemListModel(item)}/>
         </View>
     )
 }
