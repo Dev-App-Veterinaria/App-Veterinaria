@@ -1,4 +1,4 @@
-const server = "http://10.147.208.7:3001/api/article/"
+const server = "http://192.168.1.8:3001/api/article/"
 
 
 async function buscarArtigos(doenca, estado){
