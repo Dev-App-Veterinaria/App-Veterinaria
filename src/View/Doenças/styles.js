@@ -4,6 +4,7 @@ import normalizador from "../../Controllers/normalizador";
 export default StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: "#fff"
     },
     containerRenderItem: {
         backgroundColor: "#4f40b5",

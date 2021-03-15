@@ -1,4 +1,4 @@
-const server = "http://10.147.208.7:3001/api/disease/"
+const server = "http://192.168.1.8:3001/api/disease/"
 
 async function listarDoencas() {
     return fetch(server)

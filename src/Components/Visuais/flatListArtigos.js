@@ -94,13 +94,13 @@ export default function FlatListArtigos({tela}) {
             <TouchableOpacity
                 style={styles.listitem}
                 onPress={ () => {navigation.navigate("InformacoesArtigos", {artigo: props})} }>
-                <View style={styles.containerImagem}>
-                    <Text style={{alignSelf: "center", color: "#fff", fontSize: 18}}>
+                <View style={styles.containerLetra}>
+                    <Text style={styles.letra}>
                         {props.name.charAt(0)}
                     </Text>
                 </View>
                 <View style={styles.listitemContainerDescricao}>
-                    <Text style={styles.txtTitulo}>{props.name}</Text>
+                    <Text numberOfLines={2} style={styles.txtTitulo}>{props.name}</Text>
                     <Text style={styles.txtDescricao}>{props.doi}</Text>
                 </View>
             </TouchableOpacity>

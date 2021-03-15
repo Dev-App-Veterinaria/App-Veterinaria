@@ -9,7 +9,7 @@ export default function TopTabNavigator(){
     return(
         <Navigator
             tabBarOptions={{
-                tabStyle: {backgroundColor: "#4f40b5"},
+                tabStyle: {backgroundColor: "#4f40b5", elevation: 5},
                 activeTintColor: "#fff",
                 inactiveTintColor: '#cccccc',
                 labelStyle: {
@@ -18,7 +18,7 @@ export default function TopTabNavigator(){
                 }
                 }}>
             <Screen name="Informações" component={Informacoes}/>
-            <Screen name="Referência de Artigos" component={FlatListArtigos}/>
+            <Screen name="Artigos Relacionados" component={FlatListArtigos}/>
         </Navigator>
     )
 }

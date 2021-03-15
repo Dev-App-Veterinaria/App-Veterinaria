@@ -7,6 +7,7 @@ import {useDoencas} from "../../Context/contextDoencas";
 const styles = StyleSheet.create({
     container: {
         paddingHorizontal: '5%',
+        backgroundColor: "#fff",
         alignItems: 'flex-start',
     },
     itemContainer: {

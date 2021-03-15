@@ -66,8 +66,8 @@ export default function Glossario() {
                     setDoencas({...doencas, info: props})
                     navigation.navigate("Informações")
                 }}>
-                <View style={styles.containerImagem}>
-                    <Text style={{alignSelf: "center", color: "#fff", fontSize: 18}}>
+                <View style={styles.containerLetra}>
+                    <Text style={styles.letra}>
                         {props.scientificName.charAt(0)}
                     </Text>
                 </View>
