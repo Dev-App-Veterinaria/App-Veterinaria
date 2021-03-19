@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React, { createRef , useState, useEffect} from 'react';
-import { View,TouchableOpacity, Dimensions, ActivityIndicator } from 'react-native';
+import { View,TouchableOpacity, Dimensions, ActivityIndicator, Image } from 'react-native';
 import MapView, { Polygon } from 'react-native-maps';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -67,7 +67,7 @@ export default function (){
             <StatusBar style="light" />
             <View style={styles.containerMapa}>
                 <MapView
-                    initialRegion={{longitude: -54.312460, latitude: -9.50000, latitudeDelta: 40, longitudeDelta: 40}}
+                    initialRegion={{longitude: -54.312460, latitude: -16.50000, latitudeDelta: 40, longitudeDelta: 40}}
                     style={styles.mapa}
                     customMapStyle={mapStyle}
                     minZoomLevel={getMinZoomLevel()}
@@ -162,6 +162,7 @@ export default function (){
                     :
                     <></>
                 }
+                <Image source={require("../../../assets/simbolo.png")} style={styles.btnLogo}/>
                 <BarraDeBusca
                     navegacao="Pesquisa"
                     style={{position: "absolute", top: 0}}/>

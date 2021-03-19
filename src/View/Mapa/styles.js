@@ -10,10 +10,10 @@ export default StyleSheet.create({
         height: Dimensions.get('window').height,
     },
     btn: {
-        position: "absolute"
+        position: "absolute",
+        bottom: normalizador.heightPercentageToDP("18%"),
     },
     containerMapa: {
-        justifyContent: 'flex-end',
         alignItems: 'flex-end'
     },
     tamanhoBtn : normalizador.widthPercentageToDP("10%"),
@@ -24,5 +24,10 @@ export default StyleSheet.create({
         position: "absolute",
         top: 0,
         backgroundColor: "#4f40b5"
-    }
+    },
+    btnLogo : {
+        width: normalizador.widthPercentageToDP("10%"),
+        height: normalizador.widthPercentageToDP("10%"),
+        position: "absolute",
+        top: normalizador.heightPercentageToDP("7%")}
 })
