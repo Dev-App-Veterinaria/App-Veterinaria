@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React, { createRef , useState, useEffect} from 'react';
-import { View,TouchableOpacity, Dimensions, ActivityIndicator, Image } from 'react-native';
+import { View,TouchableOpacity, Dimensions, ActivityIndicator } from 'react-native';
 import MapView, { Polygon } from 'react-native-maps';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -162,19 +162,18 @@ export default function (){
                     :
                     <></>
                 }
-                <Image source={require("../../../assets/simbolo.png")} style={styles.btnLogo}/>
-                <BarraDeBusca
-                    navegacao="Pesquisa"
-                    style={{position: "absolute", top: 0}}/>
-                <TouchableOpacity
-                    style={styles.btn}
-                    onPress={() => navigation.navigate("TelaDeInformações")}>
-                    <Icon
-                        name="information"
-                        size={styles.tamanhoBtn}
-                        color="#4f40b5"/>
-                </TouchableOpacity>
             </View>
+            <TouchableOpacity
+                style={styles.btn}
+                onPress={() => navigation.navigate("TelaDeInformações")}>
+                <Icon
+                    name="information"
+                    size={styles.tamanhoBtn}
+                    color="#4f40b5"/>
+            </TouchableOpacity>
+            <BarraDeBusca
+                navegacao="Pesquisa"
+                style={{position: "absolute", top: 0}}/>
         </View>
         )
 }
