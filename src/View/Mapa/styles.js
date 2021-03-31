@@ -4,6 +4,7 @@ import normalizador from "../../Controllers/normalizador";
 export default StyleSheet.create({
     container: {
         flex: 1,
+        flexDirection: 'row-reverse'
     },
     mapa: {
         width: Dimensions.get('window').width,
@@ -11,14 +12,15 @@ export default StyleSheet.create({
     },
     btn: {
         position: "absolute",
-        bottom: normalizador.heightPercentageToDP("18%"),
+        bottom: 0
     },
     containerMapa: {
         alignItems: 'flex-end'
     },
     tamanhoBtn : normalizador.widthPercentageToDP("10%"),
     telaErro:{
-        flex:1,  width:"100%",
+        flex:1,
+        width:"100%",
         height: "100%",
         flexDirection:"column",
         position: "absolute",
@@ -29,5 +31,6 @@ export default StyleSheet.create({
         width: normalizador.widthPercentageToDP("10%"),
         height: normalizador.widthPercentageToDP("10%"),
         position: "absolute",
-        top: normalizador.heightPercentageToDP("7%")}
+        top: normalizador.heightPercentageToDP('6.2%')
+    }
 })

@@ -9,6 +9,8 @@ import BuscaProvider from "../Context/contextBusca";
 import DadosProvider from "../Context/contextDoencas";
 import styles from './styles';
 import Glossario from "../View/Glossario";
+import {Image} from "react-native";
+import normalizador from "../Controllers/normalizador";
 
 export default function TabInicioNavigator() {
     const {Navigator, Screen} = createStackNavigator()
@@ -22,7 +24,13 @@ export default function TabInicioNavigator() {
                         headerTintColor: 'white'}}>
                     <Screen
                         name="Parasitour"
-                        component={Mapa}/>
+                        component={Mapa}
+                        options={{
+                            headerTitle: () => (<Image
+                                    style={{ width: normalizador.widthPercentageToDP('34%'), height: normalizador.widthPercentageToDP('9%') }}
+                                    source={require('../../assets/logotipo.png')}
+                                    />)
+                        }}/>
                     <Screen
                         name="Doenças"
                         component={Doencas}
