@@ -3,12 +3,12 @@ import normalizador from "../../Controllers/normalizador";
 
 export default StyleSheet.create({
     container: {
-        flex: 1,
-        flexDirection: 'row-reverse'
+        ...StyleSheet.absoluteFillObject,
+        justifyContent: 'flex-end',
+        alignItems: 'flex-end',
     },
     mapa: {
-        width: Dimensions.get('window').width,
-        height: Dimensions.get('window').height,
+        ...StyleSheet.absoluteFillObject,
     },
     btn: {
         position: "absolute",
