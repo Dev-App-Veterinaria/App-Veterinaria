@@ -67,7 +67,7 @@ export default function (){
             <StatusBar style="light" />
             <MapView
                 provider={PROVIDER_GOOGLE}
-                initialRegion={{longitude: -54.312460, latitude: -16.50000, latitudeDelta: 40, longitudeDelta: 40}}
+                initialRegion={{longitude: -54.312460, latitude: -12.50000, latitudeDelta: 40, longitudeDelta: 40}}
                 style={styles.mapa}
                 customMapStyle={mapStyle}
                 minZoomLevel={getMinZoomLevel()}
