@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "AppVeterinaria",
-    "slug": "AppVeterinaria",
+    "name": "Parasitour",
+    "slug": "Parasitour",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -22,8 +22,12 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
+        "backgroundColor": "#4f40b5"
+      },
+      "config": {
+        "googleMaps": { "apiKey": "API_KEY" }
+      },
+      "package": "com.uname.parasitour"
     },
     "web": {
       "favicon": "./assets/icon.png"

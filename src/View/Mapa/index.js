@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import React, { createRef , useState, useEffect} from 'react';
 import { View,TouchableOpacity, Dimensions, ActivityIndicator } from 'react-native';
-import MapView, { Polygon } from 'react-native-maps';
+import MapView, { Polygon, PROVIDER_GOOGLE } from 'react-native-maps';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import BarraDeBusca from '../../Components/Visuais/barraDeBusca';
@@ -65,104 +65,103 @@ export default function (){
     return(
         <View style={styles.container}>
             <StatusBar style="light" />
-            <View style={styles.containerMapa}>
-                <MapView
-                    initialRegion={{longitude: -54.312460, latitude: -16.50000, latitudeDelta: 40, longitudeDelta: 40}}
-                    style={styles.mapa}
-                    customMapStyle={mapStyle}
-                    minZoomLevel={getMinZoomLevel()}
-                    ref={mapView}
-                    onMapReady={setMapBoundaries}>
-                    <Poligono
-                        coordinates={poligonos.ACRE}
-                        nome="Acre"/>
-                    <Poligono
-                        coordinates={poligonos.ALAGOAS}
-                        nome="Alagoas"/>
-                    <Poligono
-                        coordinates={poligonos.AMAPA}
-                        nome="Amapá"/>
-                    <Poligono
-                        coordinates={poligonos.AMAZONAS}
-                        nome="Amazonas"/>
-                    <Poligono
-                        coordinates={poligonos.BAHIA}
-                        nome="Bahia"/>
-                    <Poligono
-                        coordinates={poligonos.CEARA}
-                        nome="Ceará"/>
-                    <Poligono
-                        coordinates={poligonos.DISTRITOFEDERAL}
-                        nome="Distrito Federal"/>
-                    <Poligono
-                        coordinates={poligonos.ESPIRITOSANTO}
-                        nome="Espírito Santo"/>
-                    <Poligono
-                        coordinates={poligonos.GOIAS}
-                        nome="Goiás"/>
-                    <Poligono
-                        coordinates={poligonos.MARANHAO}
-                        nome="Maranhão"/>
-                    <Poligono
-                        coordinates={poligonos.MATOGROSSO}
-                        nome="Mato Grosso"/>
-                    <Poligono
-                        coordinates={poligonos.MATOGROSSODOSUL}
-                        nome="Mato Grosso do Sul"/>
-                    <Poligono
-                        coordinates={poligonos.MINASGERAIS}
-                        nome="Minas Gerais"/>
-                    <Poligono
-                        coordinates={poligonos.PARA}
-                        nome="Pará"/>
-                    <Poligono
-                        coordinates={poligonos.PARAIBA}
-                        nome="Paraíba"/>
-                    <Poligono
-                        coordinates={poligonos.PARANA}
-                        nome="Paraná"/>
-                    <Poligono
-                        coordinates={poligonos.PERNAMBUCO}
-                        nome="Pernambuco"/>
-                    <Poligono
-                        coordinates={poligonos.PIAUI}
-                        nome="Piauí"/>
-                    <Poligono
-                        coordinates={poligonos.RIODEJANEIRO}
-                        nome="Rio de Janeiro"/>
-                    <Poligono
-                        coordinates={poligonos.RIOGRANDEDONORTE}
-                        nome="Rio Grande do Norte"/>
-                    <Poligono
-                        coordinates={poligonos.RIOGRANDEDOSUL}
-                        nome="Rio Grande do Sul"/>
-                    <Poligono
-                        coordinates={poligonos.RONDONIA}
-                        nome="Rondônia"/>
-                    <Poligono
-                        coordinates={poligonos.RORAIMA}
-                        nome="Roraima"/>
-                    <Poligono
-                        coordinates={poligonos.SANTACATARINA}
-                        nome="Santa Catarina"/>
-                    <Poligono
-                        coordinates={poligonos.SAOPAULO}
-                        nome="São Paulo"/>
-                    <Poligono
-                        coordinates={poligonos.SERGIPE}
-                        nome="Sergipe"/>
-                    <Poligono
-                        coordinates={poligonos.TOCANTINS}
-                        nome="Tocantins"/>
-                </MapView>
-                {carregando ?
-                    <View style={styles.telaErro}>
-                        <ActivityIndicator style={{flex: 1}} size="large" color="#fff" />
-                    </View>
-                    :
-                    <></>
-                }
-            </View>
+            <MapView
+                provider={PROVIDER_GOOGLE}
+                initialRegion={{longitude: -54.312460, latitude: -12.50000, latitudeDelta: 40, longitudeDelta: 40}}
+                style={styles.mapa}
+                customMapStyle={mapStyle}
+                minZoomLevel={getMinZoomLevel()}
+                ref={mapView}
+                onMapReady={setMapBoundaries}>
+                <Poligono
+                    coordinates={poligonos.ACRE}
+                    nome="Acre"/>
+                <Poligono
+                    coordinates={poligonos.ALAGOAS}
+                    nome="Alagoas"/>
+                <Poligono
+                    coordinates={poligonos.AMAPA}
+                    nome="Amapá"/>
+                <Poligono
+                    coordinates={poligonos.AMAZONAS}
+                    nome="Amazonas"/>
+                <Poligono
+                    coordinates={poligonos.BAHIA}
+                    nome="Bahia"/>
+                <Poligono
+                    coordinates={poligonos.CEARA}
+                    nome="Ceará"/>
+                <Poligono
+                    coordinates={poligonos.DISTRITOFEDERAL}
+                    nome="Distrito Federal"/>
+                <Poligono
+                    coordinates={poligonos.ESPIRITOSANTO}
+                    nome="Espírito Santo"/>
+                <Poligono
+                    coordinates={poligonos.GOIAS}
+                    nome="Goiás"/>
+                <Poligono
+                    coordinates={poligonos.MARANHAO}
+                    nome="Maranhão"/>
+                <Poligono
+                    coordinates={poligonos.MATOGROSSO}
+                    nome="Mato Grosso"/>
+                <Poligono
+                    coordinates={poligonos.MATOGROSSODOSUL}
+                    nome="Mato Grosso do Sul"/>
+                <Poligono
+                    coordinates={poligonos.MINASGERAIS}
+                    nome="Minas Gerais"/>
+                <Poligono
+                    coordinates={poligonos.PARA}
+                    nome="Pará"/>
+                <Poligono
+                    coordinates={poligonos.PARAIBA}
+                    nome="Paraíba"/>
+                <Poligono
+                    coordinates={poligonos.PARANA}
+                    nome="Paraná"/>
+                <Poligono
+                    coordinates={poligonos.PERNAMBUCO}
+                    nome="Pernambuco"/>
+                <Poligono
+                    coordinates={poligonos.PIAUI}
+                    nome="Piauí"/>
+                <Poligono
+                    coordinates={poligonos.RIODEJANEIRO}
+                    nome="Rio de Janeiro"/>
+                <Poligono
+                    coordinates={poligonos.RIOGRANDEDONORTE}
+                    nome="Rio Grande do Norte"/>
+                <Poligono
+                    coordinates={poligonos.RIOGRANDEDOSUL}
+                    nome="Rio Grande do Sul"/>
+                <Poligono
+                    coordinates={poligonos.RONDONIA}
+                    nome="Rondônia"/>
+                <Poligono
+                    coordinates={poligonos.RORAIMA}
+                    nome="Roraima"/>
+                <Poligono
+                    coordinates={poligonos.SANTACATARINA}
+                    nome="Santa Catarina"/>
+                <Poligono
+                    coordinates={poligonos.SAOPAULO}
+                    nome="São Paulo"/>
+                <Poligono
+                    coordinates={poligonos.SERGIPE}
+                    nome="Sergipe"/>
+                <Poligono
+                    coordinates={poligonos.TOCANTINS}
+                    nome="Tocantins"/>
+            </MapView>
+            {carregando ?
+                <View style={styles.telaErro}>
+                    <ActivityIndicator style={{flex: 1}} size="large" color="#fff" />
+                </View>
+                :
+                <></>
+            }
             <TouchableOpacity
                 style={styles.btn}
                 onPress={() => navigation.navigate("TelaDeInformações")}>
