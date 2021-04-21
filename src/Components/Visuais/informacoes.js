@@ -48,7 +48,7 @@ export default function Informacoes() {
             </View>
             <View style={styles.itemContainer}>
                 <Text style={styles.txtTitulo}>Vetor</Text>
-                <Text style={styles.txt}>{doencas.info.vector}</Text>
+                <Text style={styles.txt}>{doencas.info.vector.join(", ")}</Text>
             </View>
             <View style={styles.itemContainer}>
                 <Text style={styles.txtTitulo}>Ciclo de Vida</Text>
