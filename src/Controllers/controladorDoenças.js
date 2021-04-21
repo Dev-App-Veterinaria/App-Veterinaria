@@ -1,4 +1,6 @@
-const server = "http://192.168.1.8:3001/api/disease/"
+import config from "../Config";
+
+const server = `${config.SERVER_ADDRESS}/api/disease/`;
 
 async function listarDoencas() {
     return fetch(server)

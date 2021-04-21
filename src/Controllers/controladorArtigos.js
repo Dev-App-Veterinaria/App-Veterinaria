@@ -1,5 +1,6 @@
-const server = "http://192.168.1.8:3001/api/article/"
+import config from "../Config";
 
+const server = `${config.SERVER_ADDRESS}/api/article/`;
 
 async function buscarArtigos(doenca, estado){
     if(estado !== undefined && doenca !== undefined){

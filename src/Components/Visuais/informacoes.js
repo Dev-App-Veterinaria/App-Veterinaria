@@ -43,12 +43,12 @@ export default function Informacoes() {
                 <Text style={styles.txt}>{doencas.info.name} (<I>{doencas.info.scientificName}</I>)</Text>
             </View>
             <View style={styles.itemContainer}>
-                <Text style={styles.txtTitulo}>Agente Epidemiológico</Text>
+                <Text style={styles.txtTitulo}>Agente Etiológico</Text>
                 <Text style={styles.txt}>{doencas.info.etiologicalAgent}</Text>
             </View>
             <View style={styles.itemContainer}>
                 <Text style={styles.txtTitulo}>Vetor</Text>
-                <Text style={styles.txt}>{doencas.info.vector}</Text>
+                <Text style={styles.txt}>{doencas.info.vector.join(", ")}</Text>
             </View>
             <View style={styles.itemContainer}>
                 <Text style={styles.txtTitulo}>Ciclo de Vida</Text>
