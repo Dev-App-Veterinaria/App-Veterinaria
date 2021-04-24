@@ -63,9 +63,8 @@ export default function ({route}) {
                 inicializarDoencas();
             }}/>
     }
-    
+
     if (doencas.doencas.length < 1){
-        console.log(erro);
         return <TelaDeErro mensagem={"Nenhum resultado encontrado! Verifique a sua busca."}/>
     }
 
