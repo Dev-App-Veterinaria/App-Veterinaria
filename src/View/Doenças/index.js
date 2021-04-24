@@ -42,7 +42,6 @@ export default function ({route}) {
                 }}>
 
                 <Text style={styles.txtTitulo}>{props.scientificName}</Text>
-                <Text style={styles.txtDescricao}>{props.etiologicalAgent}</Text>
             </TouchableOpacity>
         )
     }
