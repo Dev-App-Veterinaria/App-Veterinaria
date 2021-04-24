@@ -40,15 +40,15 @@ export default function Informacoes() {
                     contentContainerStyle={styles.container}>
             <View style={styles.itemContainer}>
                 <Text style={styles.txtTitulo}>Doença</Text>
-                <Text style={styles.txt}>{doencas.info.name} (<I>{doencas.info.scientificName}</I>)</Text>
+                <Text style={styles.txt}>{doencas.info.scientificName} - {doencas.info.name}</Text>
             </View>
             <View style={styles.itemContainer}>
                 <Text style={styles.txtTitulo}>Agente Etiológico</Text>
-                <Text style={styles.txt}>{doencas.info.etiologicalAgent}</Text>
+                <Text style={styles.txt}><I>{doencas.info.etiologicalAgent}</I></Text>
             </View>
             <View style={styles.itemContainer}>
                 <Text style={styles.txtTitulo}>Vetor</Text>
-                <Text style={styles.txt}>{doencas.info.vector.join(", ")}</Text>
+                <Text style={styles.txt}><I>{doencas.info.vector.join(", ")}</I></Text>
             </View>
             <View style={styles.itemContainer}>
                 <Text style={styles.txtTitulo}>Ciclo de Vida</Text>
@@ -71,7 +71,7 @@ export default function Informacoes() {
                 <Text style={styles.txt}>{doencas.info.distribution}</Text>
             </View>
             <View style={styles.itemContainer}>
-                <Text style={styles.txtTitulo}>Estados</Text>
+                <Text style={styles.txtTitulo}>Estado(s)</Text>
                 <Text style={styles.txt}>{separaArray(doencas.info.states)}</Text>
             </View>
         </ScrollView>
