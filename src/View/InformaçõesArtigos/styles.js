@@ -2,11 +2,21 @@ import {StyleSheet} from "react-native";
 import normalizador from "../../Controllers/normalizador";
 
 export default StyleSheet.create({
+    mainContainer: {
+        flex: 1,
+        backgroundColor: "#fff",
+        justifyContent: 'flex-end',
+        alignItems: 'flex-end'
+    },
     container: {
         flex: 2,
         backgroundColor: "#fff",
         paddingHorizontal: '5%',
         alignContent: 'flex-start',
+    },
+    scrollViewContainer: {
+        justifyContent: "space-around",
+        backgroundColor: "#fff"
     },
     itemContainer: {
         paddingVertical: 10,
@@ -25,10 +35,10 @@ export default StyleSheet.create({
     },
     botaoUrl:{
         padding: 10,
-        marginBottom: normalizador.widthPercentageToDP("5%"),
-        marginRight: normalizador.widthPercentageToDP("3%"),
+        marginBottom: '5%',
+        marginRight: '3%',
         borderRadius: 50,
-        alignSelf: "flex-end",
+        bottom: 0,
         justifyContent: "center",
         alignItems: "center",
         elevation: 7,

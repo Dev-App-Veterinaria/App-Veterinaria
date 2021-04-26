@@ -108,7 +108,7 @@ export default function Glossario() {
                 renderItem={({item}) => itemListModel(item)}/>
                 )
     }else{
-        return <TelaDeErro mensagem={"Nenhum resultado encontrado! \nVerifique a sua busca."}/>
+        exibirBusca = <TelaDeErro mensagem={"Nenhum resultado encontrado! \nVerifique a sua busca."}/>
     }
 
 

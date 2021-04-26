@@ -40,7 +40,7 @@ export default function Informacoes() {
                     contentContainerStyle={styles.container}>
             <View style={styles.itemContainer}>
                 <Text style={styles.txtTitulo}>Doença</Text>
-                <Text style={styles.txt}>{doencas.info.scientificName} - {doencas.info.name}</Text>
+                <Text style={styles.txt}>{doencas.info.scientificName} ({doencas.info.name})</Text>
             </View>
             <View style={styles.itemContainer}>
                 <Text style={styles.txtTitulo}>Agente Etiológico</Text>
