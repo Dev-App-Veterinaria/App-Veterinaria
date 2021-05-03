@@ -1,3 +1,3 @@
 export default{
-  SERVER_ADDRESS: "http://192.168.1.14:3002/",
+  SERVER_ADDRESS: "http://parasitour.api.uname.group/",
 }
