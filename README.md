@@ -1,4 +1,5 @@
 ![Parasitour](https://i.imgur.com/HNC8GbB.png)
+[Leia em Inglês](README-EN.md)
 # Bem vindo ao **Parasitour**!
 
 > ### Mas afinal, o que é o Parasitour?
